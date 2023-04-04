@@ -11,78 +11,87 @@
 
 <body class="page">
 
-    <header class="header">
-      <img src="./images/header_logo.svg" alt="Логотип" class="header__logo">
-    </header>
+  <header class="header">
+    <img src="./images/header_logo.svg" alt="Логотип" class="header__logo">
+  </header>
 
-    <section class="profile">
-      <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
-      <div class="profileInfo">
-      <h1 class="profileInfo__name">Жак-Ив Кусто</h1>
+  <section class="profile">
+    <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+    <div class="profileInfo">
+      <div class="profileInfo__contain">
+        <h1 class="profileInfo__name">Жак-Ив Кусто</h1>
+        <button class="profileInfo__popUp"></button>
+      </div>
       <p class="profileInfo__description">Исследователь океана</p>
+
     </div>
-      <button class="profile__addButton">+</button>
-    </section>
+    <button class="profile__addButton"></button>
+  </section>
 
 
-    <section class="elements">
-
-
-      <div class="element">
-        <img class="element__image" src="./images/omsk.jpg" alt="Омск">
-        <div class="element__city">
-        <h2 class="element__text">Омск</h2>
-        <button class="element__like"> </button>
+  <section class="elements">
+    <div class="element">
+      <img class="element__image" src="./images/omsk.jpg" alt="Омск">
+      <div class="city">
+        <h2 class="city__name">Омск</h2>
+        <button class="city__like"></button>
       </div>
-      </div>
+    </div>
 
-      <div class="element">
-        <img class="element__image" src="./images/novosibirsk.jpg" alt="Новосибирск">
-        <div class="element__city">
-        <h2 class="element__text">Новосибирск</h2>
-        <button class="element__like"> </button>
+    <div class="element">
+      <img class="element__image" src="./images/novosibirsk.jpg" alt="Новосибирск">
+      <div class="city">
+        <h2 class="city__name">Новосибирск</h2>
+        <button class="city__like"> </button>
       </div>
-      </div>
+    </div>
 
-      <div class="element">
-        <img class="element__image" src="./images/moscow.jpg" alt="Москва">
-        <div class="element__city">
-        <h2 class="element__text">Москва</h2>
-        <button class="element__like"> </button>
+    <div class="element">
+      <img class="element__image" src="./images/moscow.jpg" alt="Москва">
+      <div class="city">
+        <h2 class="city__name">Москва</h2>
+        <button class="city__like"> </button>
       </div>
-      </div>
+    </div>
 
-      <div class="element">
-        <img class="element__image" src="./images/piter.jpg" alt="Санкт-Петербург">
-        <div class="element__city">
-        <h2 class="element__text">Санкт-Петербург</h2>
-        <button class="element__like"> </button>
+    <div class="element">
+      <img class="element__image" src="./images/piter.jpg" alt="Санкт-Петербург">
+      <div class="city">
+        <h2 class="city__name">Санкт-Петербург</h2>
+        <button class="city__like"> </button>
       </div>
+    </div>
+
+    <div class="element">
+      <img class="element__image" src="./images/kaliningrad.jpg" alt="Калининград">
+      <div class="city">
+        <h2 class="city__name">Калининград</h2>
+        <button class="city__like"> </button>
       </div>
+    </div>
 
-      <div class="element">
-        <img class="element__image" src="./images/kaliningrad.jpg" alt="Калининград">
-        <div class="element__city">
-        <h2 class="element__text">Калининград</h2>
-        <button class="element__like"> </button>
+    <div class="element">
+      <img class="element__image" src="./images/ryazan.jpg" alt="Рязань">
+      <div class="city">
+        <h2 class="city__name">Рязань</h2>
+        <button class="city__like"> </button>
       </div>
-      </div>
-
-      <div class="element">
-        <img class="element__image" src="./images/ryazan.jpg" alt="Рязань">
-        <div class="element__city">
-        <h2 class="element__text">Рязань</h2>
-        <button class="element__like"> </button>
-      </div>
-      </div>
+    </div>
 
 
-      </section>
+  </section>
 
-    <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
-    </footer>
+  <footer class="footer">
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
+  </footer>
 
+  <div class="popup">
+    <button class="popup__close-btn"></button>
+    <div class="popup__content">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <p class="popup__text"></p>
+    </div>
+  </div>
 </body>
 
 </html>
