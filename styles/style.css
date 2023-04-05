@@ -6,6 +6,7 @@
   position: relative;
 }
 
+
 .header {
   width: 100%;
   max-width: 880px;
@@ -51,7 +52,6 @@
   margin: 0;
   padding: 0;
   text-align: center;
-
   padding: 0;
 }
 
@@ -174,8 +174,7 @@
   bottom: 0;
   left: 0;
   display: none;
-  /*opacity: 0.5;
-  background-color: #000;*/
+  background-color:rgb(0 0 0 / 0.5);
 }
 
 .popup_open{
@@ -194,6 +193,12 @@
   height: 20px;
   background: url("/images/close_popup.svg") center no-repeat;
   position: absolute;
+  transition: opacity ease-in-out 0.2s ;
+}
+
+.popup__close-btn:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .popup__content{
