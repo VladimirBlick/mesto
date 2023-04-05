@@ -79,6 +79,12 @@
   margin: 0 0 0 10px;
   border: 1px solid #fff;
   background: url("/images/Pen.svg") center no-repeat;
+  transition: opacity ease-in-out 0.2s ;
+}
+
+.profileInfo__popUp:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .profile__addButton {
@@ -162,15 +168,46 @@
 
 .popup{
   width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  /*opacity: 0.5;
+  background-color: #000;*/
+}
+
+.popup_open{
+  display: block;
+}
+
+.popup__close-btn{
+  all:initial;
+  width: 88%;
+  padding: 0;
+  margin: 0;
+  top: -36px;
+  right: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url("/images/close_popup.svg") center no-repeat;
+  position: absolute;
 }
 
 .popup__content{
 width: 88%;
 min-height: 322px;
-margin: 123px auto 0;
+max-width: 430px;
+/*margin: 123px auto 0;*/
 background-color: #fff;
 border-radius: 10px;
 color: #000;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 }
 
 .popup__title{
@@ -179,17 +216,7 @@ font-weight: 900;
 line-height: 22px;
 padding: 25px 22px 0;
 margin: 0;
-}
-
-.popup__close-btn{
-  all:initial;
-  width: 88%;
-  padding: 0;
-  margin: 0 auto;
-  display: block;
-  width: 20px;
-  height: 20px;
-  background: url("/images/close_popup.svg") center no-repeat;
+text-align: center;
 }
 
 @media screen and (min-width:650px) {
@@ -271,5 +298,25 @@ margin: 0;
     font-size: 18px;
     line-height: 22px;
   }
+
+  .popup__close-btn{
+    width: 32px;
+    height: 32px;
+    background-size: 32px;
+    right: -40px;
+  }
+
+  .popup__content{
+    min-height: 330px;
 }
+
+.popup__title{
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  padding: 34px 64px 0 36px;
+  margin: 0;
+  text-align: left;
+  }
 }
+
