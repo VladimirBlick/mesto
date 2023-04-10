@@ -55,7 +55,7 @@
   padding: 0;
 }
 
-.profileInfo__description {
+.profileInfo__job {
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
@@ -213,14 +213,13 @@ position: relative;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-padding-bottom: 25px;
 }
 
 .popup__title{
 font-size: 18px;
 font-weight: 900;
 line-height: 22px;
-padding: 25px 22px 0;
+padding: 25px 22px 0 0;
 margin: 0;
 text-align: center;
 }
@@ -238,7 +237,7 @@ font-weight: 400;
 line-height: 17px;
 }
 
-.input{
+.popup__input{
 
   all: unset;
    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -247,7 +246,7 @@ line-height: 17px;
    margin: 0;
 }
 
-.input:last-of-type{
+.popup__input:last-of-type{
   margin-top: 30px;
 }
 
@@ -259,6 +258,23 @@ line-height: 17px;
   height: 46px;
   color: #ffffff;
   text-align: center;
+}
+
+.popup__btn:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  background-color: rgb(0 0 0 / 0.8);
+}
+
+.popup__input_name{
+  font-size: 14px;
+font-weight: 400;
+line-height: 17px;
+}
+.popup__input_job{
+  font-size: 14px;
+font-weight: 400;
+line-height: 17px;
 }
 
 @media screen and (min-width:650px) {
@@ -314,7 +330,7 @@ line-height: 17px;
     line-height: 48px;
   }
 
-  .profileInfo__description {
+  .profileInfo__job {
     font-size: 18px;
     line-height: 22px;
   }
@@ -349,7 +365,7 @@ line-height: 17px;
   }
 
   .popup__content{
-    padding-bottom: 37px;
+    height: 330px;
 }
 
 .popup__title{
