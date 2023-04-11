@@ -1,45 +1,41 @@
-//открытие и закрытие поп-ап
 const openPopupBtn = document.querySelector('.profileInfo__popUp_open');
 const popup = document.querySelector('.popup');
 const popupCloseBtn = document.querySelector('.popup__close-btn');
-const popupBtn = document.querySelector('.popup__btn')
+const popupBtn = document.querySelector('.popup__btn');
 
-function togglePopup () {
+function togglePopup() {
   popup.classList.toggle('popup_open');
 }
 
 openPopupBtn.addEventListener('click', togglePopup);
-
 popupCloseBtn.addEventListener('click', togglePopup);
 
+document.querySelector('.popup__btn').addEventListener('click', myClick);
 
-//запись с инпута на страницу
-const formPopup = document.querySelector('.popup__btn').addEventListener('click', myClick);
-
-function myClick(){
-const changeName = document.querySelector('.popup__input_name').value;
- document.querySelector('.profileInfo__name').innerHTML = changeName;
- const changeJob = document.querySelector('.popup__input_job').value;
- document.querySelector('.profileInfo__job').innerHTML = changeJob;
+function myClick() {
+  const changeName = document.querySelector('.popup__input-name').value;
+  document.querySelector('.profileInfo__name').innerHTML = changeName;
+  const changeJob = document.querySelector('.popup__input-job').value;
+  document.querySelector('.profileInfo__job').innerHTML = changeJob;
 }
 
-function closePopup(){
+popupBtn.addEventListener('click', togglePopup);
 
-  popupCloseBtn = document.querySelector('.popup__close-btn');
+const profileName = document.querySelector('.profileInfo__name');
+const inputName = document.querySelector('.popup__input-name');
+inputName.value = profileName.textContent;
 
+const profileJob = document.querySelector('.profileInfo__job');
+const inputJob = document.querySelector('.popup__input-job');
+inputJob.value = profileJob.textContent;
+
+const formElement = document.querySelector('.popup__form');
+
+document.querySelector('.popup__input-name');
+document.querySelector('.popup__input-job');
+
+function handleFormSubmit(evt) {
+  evt.preventDefault();
 }
 
-let formElement = document.querySelector('.popup__form')
-// Находим поля формы в DOM
-let nameInput = document.querySelector('.popup__input_name')
-let jobInput = document.querySelector('.popup__input_job')
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function handleFormSubmit (evt) {
-    evt.preventDefault();
-}
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);

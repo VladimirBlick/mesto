@@ -1,0 +1,7 @@
+.city__like {
+  border: none;
+  width: 23px;
+  height: 19px;
+  padding: 0;
+  background: url("/images/like.svg") no-repeat;
+}
