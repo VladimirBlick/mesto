@@ -4,30 +4,31 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
-@import url(../blocks/profile/__addButton/profile__addButton.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/profileInfo/profileInfo.css);
-@import url(../blocks/profileInfo/__contain/profileInfo__contain.css);
-@import url(../blocks/profileInfo/__job/profileInfo__job.css);
-@import url(../blocks/profileInfo/__name/profileInfo__name.css);
-@import url(../blocks/profileInfo/__popUp/profileInfo__popUp.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__contain/profile__contain.css);
+@import url(../blocks/profile/__job/profile__job.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__popup/profile__popup.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
-@import url(../blocks/city/city.css);
-@import url(../blocks/city/__name/city__name.css);
-@import url(../blocks/city/__like/city__like.css);
+@import url(../blocks/element/__city/element__city.css);
+@import url(../blocks/element/__city-name/element__city-name.css);
+@import url(../blocks/element/__city-like/element__city-like.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_open/popup_open.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__btn/popup__btn.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
-@import url(../blocks/popup/__content/popup__content.css);
+@import url(../blocks/popup/container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__form/popup__form.css);
-@import url(../blocks/popup/__input-name/popup__input-name.css);
-@import url(../blocks/popup/__input-job/popup__input-job.css);
+@import url(../blocks/popup/__input/popup__input.css);
+
 
 
 

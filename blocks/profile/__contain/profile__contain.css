@@ -1,4 +1,4 @@
-.profileInfo__contain {
+.profile__contain {
   margin: 0 0 0 28px;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (min-width:1000px) {
-  .profileInfo__contain {
+  .profile__contain {
     margin: 0;
   }
 }

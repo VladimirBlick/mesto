@@ -1,6 +1,6 @@
-.profileInfo__popUp {
-  width: 18px;
-  height: 18px;
+.profile__popup {
+  min-width: 18px;
+  min-height: 18px;
   padding: 0;
   margin: 0 0 0 10px;
   border: 1px solid #fff;
@@ -8,13 +8,13 @@
   transition: opacity ease-in-out 0.2s;
 }
 
-.profileInfo__popUp:hover {
+.profile__popup:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media screen and (min-width:1000px) {
-  .profileInfo__popUp {
+  .profile__popup {
     width: 24px;
     height: 24px;
     background-size: 10px;

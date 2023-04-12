@@ -1,4 +1,4 @@
-.profileInfo {
+.profile__info {
   width: 100%;
   margin: 26px 0 0;
   display: flex;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (min-width:1000px) {
-  .profileInfo {
+  .profile__info {
     align-items: flex-start;
     margin: 0 0 0 30px;
     justify-content: center;
