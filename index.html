@@ -19,62 +19,16 @@
       <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
       <div class="profile__info">
         <div class="profile__contain">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">Владимир</h1>
           <button type="button" class="profile__popup"></button>
         </div>
-        <p class="profile__job">Исследователь океана</p>
+        <p class="profile__job">Исследователь JS</p>
       </div>
       <button type="button" class="profile__add-button"></button>
     </section>
 
     <section class="elements">
-      <div class="element">
-        <img class="element__image" src="./images/omsk.jpg" alt="Омск">
-        <div class="element__city">
-          <h2 class="element__city-name">Омск</h2>
-          <button type="button" class="element__city-like"></button>
-        </div>
-      </div>
 
-      <div class="element">
-        <img class="element__image" src="./images/novosibirsk.jpg" alt="Новосибирск">
-        <div class="element__city">
-          <h2 class="element__city-name">Новосибирск</h2>
-          <button class="element__city-like"> </button>
-        </div>
-      </div>
-
-      <div class="element">
-        <img class="element__image" src="./images/moscow.jpg" alt="Москва">
-        <div class="element__city">
-          <h2 class="element__city-name">Москва</h2>
-          <button class="element__city-like"> </button>
-        </div>
-      </div>
-
-      <div class="element">
-        <img class="element__image" src="./images/piter.jpg" alt="Санкт-Петербург">
-        <div class="element__city">
-          <h2 class="element__city-name">Санкт-Петербург</h2>
-          <button class="element__city-like"> </button>
-        </div>
-      </div>
-
-      <div class="element">
-        <img class="element__image" src="./images/kaliningrad.jpg" alt="Калининград">
-        <div class="element__city">
-          <h2 class="element__city-name">Калининград</h2>
-          <button class="element__city-like"> </button>
-        </div>
-      </div>
-
-      <div class="element">
-        <img class="element__image" src="./images/ryazan.jpg" alt="Рязань">
-        <div class="element__city">
-          <h2 class="element__city-name">Рязань</h2>
-          <button class="element__city-like"> </button>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -105,6 +59,18 @@
       </form>
     </div>
   </div>
+
+  <template id="card-template">
+
+    <div class="element">
+      <img class="element__image" src="" alt="">
+      <div class="element__city">
+        <h2 class="element__city-name"></h2>
+        <button type="button" class="element__city-like"></button>
+      </div>
+    </div>
+
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
