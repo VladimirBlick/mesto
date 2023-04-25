@@ -18,6 +18,7 @@
 @import url(../blocks/element/__city/element__city.css);
 @import url(../blocks/element/__city-name/element__city-name.css);
 @import url(../blocks/element/__city-like/element__city-like.css);
+@import url(../blocks/element/city-delete/element__city-delete.css);
 @import url(../blocks/element/__city-like/_active/element__city-like_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

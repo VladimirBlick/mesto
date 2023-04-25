@@ -1,31 +1,82 @@
 
-//попап имя, работа
+//переменные для ПОПАПА (имя, работа)
 const popup = document.querySelector('.popup');
 const popupContainer = document.querySelector('.popup__container');
-const openPopupBtn = document.querySelector('.profile__popup');
-const closePopupBtn = document.querySelector('.popup__close-btn');
-const submitBtn = document.querySelector('.popup__btn');
+const popupOpenBtn = document.querySelector('.profile__popup');
+const popupCloseBtn = document.querySelector('.popup__close-btn');
+const popupInputName = document.querySelector('.popup__input_type_name');
+const popupInputJob = document.querySelector('.popup__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const inputName = document.querySelector('.popup__input_type_name');
-const inputJob = document.querySelector('.popup__input_type_job');
 
-//добавление карточки
-const popupCard = document.querySelector('.popup-card');
-const openPopupCardBtn = document.querySelector('.profile__add-button');
-const closePopupCardBtn = document.querySelector('.popup-card__close-btn');
-const createBtn = document.querySelector('.popup-card__btn');
-const cardName = document.querySelector('.profile__name');
-const imageLink = document.querySelector('.profile__job');
 
-//лайк карточки
+//переменные для КАРТОЧКИ
+const сard = document.querySelector('.popup-card');
+const cardOpenBtn = document.querySelector('.profile__add-button');
+const cardCloseBtn = document.querySelector('.popup-card__close-btn');
+const cardCreateBtn = document.querySelector('.popup-card__btn');
+const cardInputName = document.querySelector('.popup-card__input_name');
+const cardInputImageLink = document.querySelector('.popup-card__input_image');
+const cardContainer = document.querySelector('.popup-card__container');
+
+//лайк КАРТОЧКИ
 const cardLike = document.querySelector('.element__city-like');
 
+//функция лайк карточки
+function like() {
+  cardLike.classList.toggle('element__city-like_active');
+  console.log('sdfsf');
+}
+
+//слушатель лайк карточки
+//cardLike.addEventListener('click', like);
+
+//открытие и закрытие КАРТОЧКИ
+function openCard() {
+  сard.classList.add('popup-card_opened');
+}
+
+function closeCard() {
+  сard.classList.remove('popup-card_opened');
+}
+
+//добавление данных из инпута КАРТОЧКИ в массив
+function newCard() {
+ const newElement = {
+  name: cardInputName.value,
+  link: cardInputImageLink.value
+};
+initialCards.splice (0,0, newElement);
+const element = templateElement.content.cloneNode(true).querySelector('.element');
+
+// Заполняем элемент данными из массива initialCards
+element.querySelector('.element__image').src = newElement.link;
+element.querySelector('.element__image').alt = newElement.name;
+element.querySelector('.element__city-name').textContent = newElement.name;
+
+// Добавляем элемент внутрь контейнера elementsContainer
+elementsContainer.appendChild(element);
+
+}
+
+function handleCardSubmit(evt) {
+  evt.preventDefault();
+  newCard();
+  closeCard();
+
+}
+
+cardContainer.addEventListener('submit', handleCardSubmit);
+
+
+
+
+
 //Шесть карточек «из коробки» и добавление новых
-const initialCards = [
+let initialCards = [
   {
     name: 'Омск',
-    link: 'https://images.unsplash.com/photo-1653828030585-1aa093033717'
+    link: 'https://images.unsplash.com/photo-1653828030585-1aa093033717',
   },
   {
     name: 'Новосибирск',
@@ -49,44 +100,30 @@ const initialCards = [
   }
 ];
 
-/*const cardTemplate = document.getElementById('card-template');
-const elements = document.querySelector('.elements');
-
-const createCard = function cardData (){
- const cardElements = cardTemplate.content.querySelector('.element').cloneNode(true);
- const elementImage = cardElements.querySelector('.element__image');
- const elementCityName = cardElements.querySelector('.element__city-name');
- elementImage.src = initialCards.link
- elementCityName.textContent = initialCards.name
-
- return cardElements;
-}
-
-initialCards.forEach(function(element)) =*/
-
+//ДОБАВЛЕНИЕ КАРТОЧКИ
   // Получаем элементы из DOM
+
   const templateElement = document.getElementById('card-template');
   const elementsContainer = document.querySelector('.elements');
 
-  initialCards.forEach(function(card) {
-    // Создаем новый элемент на основе шаблона
-    const element = templateElement.content.cloneNode(true).querySelector('.element');
+  initialCards.forEach(function(card){
+ // Создаем новый элемент на основе шаблона
+ const element = templateElement.content.cloneNode(true).querySelector('.element');
 
-console.log(card.link);
-    // Заполняем элемент данными из массива ·initialCards`
-    element.querySelector('.element__image').src = card.link;
-    element.querySelector('.element__image').alt = card.name;
-    element.querySelector('.element__city-name').textContent = card.name;
+ // Заполняем элемент данными из массива initialCards
+ element.querySelector('.element__image').src = card.link;
+ element.querySelector('.element__image').alt = card.name;
+ element.querySelector('.element__city-name').textContent = card.name;
 
-    // Добавляем элемент внутрь контейнера `elementsContainer`
-    elementsContainer.appendChild(element);
+ // Добавляем элемент внутрь контейнера elementsContainer
+ elementsContainer.appendChild(element);
   });
 
-//функции попап имя, работа
+//функции ПОПАП (имя, работа)
 function openPopup() {
   popup.classList.add('popup_opened');
-  inputJob.value = profileJob.textContent;
-  inputName.value = profileName.textContent;
+  popupInputJob.value = profileJob.textContent;
+  popupInputName.value = profileName.textContent;
 }
 
 function closePopup() {
@@ -95,50 +132,24 @@ function closePopup() {
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileJob.textContent = inputJob.value;
+  profileName.textContent = popupInputName.value;
+  profileJob.textContent = popupInputJob.value;
   closePopup();
 }
 
-//функция лайк карточки
-function like () {
-  cardLike.classList.toggle('element__city-like_active');
-}
 
 
-//функции попап карточка
-function openPopupCard() {
-  popupCard.classList.add('popup-card_opened');
-  //inputJob.value = profileJob.textContent;
-  //inputName.value = profileName.textContent;
-}
-
-function closePopupCard() {
-  popupCard.classList.remove('popup-card_opened');
-}
-
-function handleFormCreate(evt) {
-  evt.preventDefault();
-  //profileName.textContent = inputName.value;
-  //profileJob.textContent = inputJob.value;
-  closePopupCard();
-}
-
-//слушатель лайк карточки
-//cardLike.addEventListener('click', like);
-
-//слушатели для попап имя, работа
-openPopupBtn.addEventListener('click', openPopup);
-closePopupBtn.addEventListener('click', closePopup);
+//слушатели для ПОПАП (имя, работа)
+popupOpenBtn.addEventListener('click', openPopup);
+popupCloseBtn.addEventListener('click', closePopup);
 popupContainer.addEventListener('submit', handleFormSubmit);
 
-//слушатели для попап карточка
-openPopupCardBtn.addEventListener('click', openPopupCard);
-closePopupCardBtn.addEventListener('click', closePopupCard);
-popupCardContainer.addEventListener('submit', handleFormCreate);
+//слушатели для КАРТОЧКИ
+cardOpenBtn.addEventListener('click', openCard);
+cardCloseBtn.addEventListener('click', closeCard);
 
 
-
+//Добавить данные из инпутов в карточку
 
 //Форма добавления карточки
 //Добавление карточки
