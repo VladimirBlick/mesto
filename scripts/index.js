@@ -19,14 +19,17 @@ const cardInputName = document.querySelector('.popup-card__input_name');
 const cardInputImageLink = document.querySelector('.popup-card__input_image');
 const cardContainer = document.querySelector('.popup-card__container');
 
+//удаление КАРТОЧКИ
+const cardDelete = document.querySelector('.element__city-delete');
+
 //лайк КАРТОЧКИ
 const cardLike = document.querySelector('.element__city-like');
 
-//функция лайк карточки
+/*функция лайк карточки
 function like() {
   cardLike.classList.toggle('element__city-like_active');
   console.log('sdfsf');
-}
+}*/
 
 //слушатель лайк карточки
 //cardLike.addEventListener('click', like);
@@ -42,20 +45,20 @@ function closeCard() {
 
 //добавление данных из инпута КАРТОЧКИ в массив
 function newCard() {
- const newElement = {
+  const newElement = {
   name: cardInputName.value,
   link: cardInputImageLink.value
 };
 initialCards.splice (0,0, newElement);
 const element = templateElement.content.cloneNode(true).querySelector('.element');
+console.log(initialCards);
 
 // Заполняем элемент данными из массива initialCards
 element.querySelector('.element__image').src = newElement.link;
-element.querySelector('.element__image').alt = newElement.name;
 element.querySelector('.element__city-name').textContent = newElement.name;
 
 // Добавляем элемент внутрь контейнера elementsContainer
-elementsContainer.appendChild(element);
+elementsContainer.prepend(element);
 
 }
 
@@ -67,9 +70,6 @@ function handleCardSubmit(evt) {
 }
 
 cardContainer.addEventListener('submit', handleCardSubmit);
-
-
-
 
 
 //Шесть карточек «из коробки» и добавление новых
@@ -111,12 +111,11 @@ let initialCards = [
  const element = templateElement.content.cloneNode(true).querySelector('.element');
 
  // Заполняем элемент данными из массива initialCards
- element.querySelector('.element__image').src = card.link;
- element.querySelector('.element__image').alt = card.name;
  element.querySelector('.element__city-name').textContent = card.name;
+ element.querySelector('.element__image').src = card.link;
 
  // Добавляем элемент внутрь контейнера elementsContainer
- elementsContainer.appendChild(element);
+ elementsContainer.prepend(element);
   });
 
 //функции ПОПАП (имя, работа)
@@ -137,8 +136,6 @@ function handleFormSubmit(evt) {
   closePopup();
 }
 
-
-
 //слушатели для ПОПАП (имя, работа)
 popupOpenBtn.addEventListener('click', openPopup);
 popupCloseBtn.addEventListener('click', closePopup);
@@ -149,14 +146,4 @@ cardOpenBtn.addEventListener('click', openCard);
 cardCloseBtn.addEventListener('click', closeCard);
 
 
-//Добавить данные из инпутов в карточку
-
-//Форма добавления карточки
-//Добавление карточки
-
-//Лайк карточки
-
-
-
-//Удаление карточки
 //Открытие попапа с картинкой
