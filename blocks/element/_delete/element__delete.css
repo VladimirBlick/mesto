@@ -1,4 +1,4 @@
-.element__city-delete {
+.element_delete {
   border: none;
   top: 20px;
   right: 20px;
@@ -10,7 +10,7 @@
   position: absolute;
 }
 
-.element__city-delete:hover {
+.element_delete:hover {
   opacity: 0.5;
   cursor: pointer;
 }

@@ -8,5 +8,8 @@
   position: fixed;
   align-items: center;
   justify-content: center;
-  display: none;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
