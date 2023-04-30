@@ -8,7 +8,6 @@ const popupInputJob = document.querySelector('.popup__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
-
 //переменные для КАРТОЧКИ
 const сard = document.querySelector('.popup-card');
 const cardOpenBtn = document.querySelector('.profile__add-button');
@@ -20,8 +19,6 @@ const cardContainer = document.querySelector('.popup-card__container');
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
 
-
-
 //открытие и закрытие ПОПАП (имя, работа)
 function openPopup() {
   popup.classList.add('popup_opened');
@@ -32,8 +29,6 @@ function openPopup() {
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
-
-
 
 //слушатели для ПОПАП (имя, работа)
 popupOpenBtn.addEventListener('click', openPopup);
@@ -95,7 +90,6 @@ const initialCards = [
   }
 ];
 
-
 //КАРТОЧКА
 const createElement = (cardData) => {
   const cardElement = template.content.querySelector('.element').cloneNode(true);
@@ -128,11 +122,9 @@ const createElement = (cardData) => {
   }
   imageCloseBtn.addEventListener('click', closeImage);
 
-
-
   const handleDelete = () => {
     cardElement.remove();
-  }
+  };
 
   const handleLike = () => {
     elementCityLike.classList.toggle('element__city-like_active');
@@ -142,16 +134,13 @@ const createElement = (cardData) => {
   elementCityDelete.addEventListener('click', handleDelete);
 
   return cardElement;
-
-}
+};
 
 initialCards.forEach((card) => {
   const element = createElement(card);
 
   sectionElements.appendChild(element);
-
-})
-
+});
 
 function newCard() {
   const newElement = {
