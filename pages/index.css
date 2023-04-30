@@ -40,6 +40,12 @@
 @import url(../blocks/popup-card/__title/popup-card__title.css);
 @import url(../blocks/popup-card/__form/popup-card__form.css);
 @import url(../blocks/popup-card/__input/popup-card__input.css);
+@import url(../blocks/popup-image/popup-image.css);
+@import url(../blocks/popup-image/__container/popup-image__container.css);
+@import url(../blocks/popup-image/__signature/popup-image__signature.css);
+@import url(../blocks/popup-image/_opened/popup-image_opened.css);
+@import url(../blocks/popup-image/__close_btn/popup-image__close-btn.css);
+@import url(../blocks/popup-image/__form/popup-image__form.css);
 
 
 

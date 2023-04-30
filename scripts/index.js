@@ -20,6 +20,8 @@ const cardContainer = document.querySelector('.popup-card__container');
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
 
+
+
 //открытие и закрытие ПОПАП (имя, работа)
 function openPopup() {
   popup.classList.add('popup_opened');
@@ -30,6 +32,8 @@ function openPopup() {
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
+
+
 
 //слушатели для ПОПАП (имя, работа)
 popupOpenBtn.addEventListener('click', openPopup);
@@ -91,7 +95,8 @@ const initialCards = [
   }
 ];
 
-//создание карточки
+
+//КАРТОЧКА
 const createElement = (cardData) => {
   const cardElement = template.content.querySelector('.element').cloneNode(true);
 
@@ -100,10 +105,32 @@ const createElement = (cardData) => {
   const elementCityLike = cardElement.querySelector('.element__city-like');
   const elementCityDelete = cardElement.querySelector('.element_delete');
 
+  const imagePopup = document.querySelector('.popup-image');
+  const imagePopupContainer = document.querySelector('.popup-image__container');
+  const imagePopupSignature = document.querySelector('.popup-image__signature');
+  const imageCloseBtn = document.querySelector('.popup-image__close-btn');
+
   elementCityName.textContent = cardData.name;
   elementImage.src = cardData.link;
 
-   const handleDelete = () => {
+  //открытие и закрытие ФОТКИ
+
+  elementImage.addEventListener('click', function () {
+    //  всплывающее окно
+    imagePopup.classList.add('popup-image_opened');
+    // Обновление содержимого всплывающего окна
+    imagePopupContainer.src = cardData.link;
+    imagePopupSignature.textContent = cardData.name;
+  });
+
+  function closeImage() {
+    imagePopup.classList.remove('popup-image_opened');
+  }
+  imageCloseBtn.addEventListener('click', closeImage);
+
+
+
+  const handleDelete = () => {
     cardElement.remove();
   }
 
@@ -115,27 +142,28 @@ const createElement = (cardData) => {
   elementCityDelete.addEventListener('click', handleDelete);
 
   return cardElement;
-  }
 
-  initialCards.forEach ((card) => {
+}
+
+initialCards.forEach((card) => {
   const element = createElement(card);
 
   sectionElements.appendChild(element);
-  })
+
+})
 
 
-  function newCard() {
-    const newElement = {
+function newCard() {
+  const newElement = {
     name: cardInputName.value,
     link: cardInputImageLink.value,
   };
 
-  initialCards.splice (0,0, newElement);
-  //console.log(initialCards[0]);
-  //createElement (newElement);
+  initialCards.splice(0, 0, newElement);
+
   const element = createElement(newElement);
   sectionElements.prepend(element);
-  }
+}
 
 
 
