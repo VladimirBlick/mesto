@@ -1,12 +1,15 @@
 //переменные для ПОПАПА (имя, работа)
-const popup = document.querySelector('.popup');
-const popupContainer = document.querySelector('.popup__container');
-const popupOpenBtn = document.querySelector('.profile__popup');
-const popupCloseBtn = document.querySelector('.popup__close-btn');
-const popupInputName = document.querySelector('.popup__input_type_name');
-const popupInputJob = document.querySelector('.popup__input_type_job');
+const profilePopup = document.querySelector('.popup-profile');
+const profilePopupContainer = document.querySelector('.popup-profile__container');
+const profilePopupOpenBtn = document.querySelector('.profile__popup-profile');
+const profilePopupCloseBtn = document.querySelector('.popup-profile__close-btn');
+const profilePopupInputName = document.querySelector('.popup-profile__input_type_name');
+const profilePopupInputJob = document.querySelector('.popup-profile__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
+
+profilePopupInputJob.value = profileJob.textContent;
+profilePopupInputName.value = profileName.textContent;
 
 //переменные для КАРТОЧКИ
 const сard = document.querySelector('.popup-card');
@@ -19,21 +22,19 @@ const cardContainer = document.querySelector('.popup-card__container');
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
 
-//открытие и закрытие ПОПАП (имя, работа)
+//открытие и закрытие ПОПАП
 function openPopup() {
-  popup.classList.add('popup_opened');
-  popupInputJob.value = profileJob.textContent;
-  popupInputName.value = profileName.textContent;
+  profilePopup.classList.add('popup-profile_opened');
 }
 
 function closePopup() {
-  popup.classList.remove('popup_opened');
+  profilePopup.classList.remove('popup-profile_opened');
 }
 
 //слушатели для ПОПАП (имя, работа)
-popupOpenBtn.addEventListener('click', openPopup);
-popupCloseBtn.addEventListener('click', closePopup);
-popupContainer.addEventListener('submit', handleFormSubmit);
+profilePopupOpenBtn.addEventListener('click', openPopup);
+profilePopupCloseBtn.addEventListener('click', closePopup);
+profilePopupContainer.addEventListener('submit', handleFormSubmit);
 
 //слушатели для КАРТОЧКИ
 cardOpenBtn.addEventListener('click', openCard);
@@ -43,8 +44,8 @@ cardContainer.addEventListener('submit', handleCardSubmit);
 function handleFormSubmit(evt) {
   evt.preventDefault();
   closePopup();
-  profileName.textContent = popupInputName.value;
-  profileJob.textContent = popupInputJob.value;
+  profileName.textContent = profilePopupInputName.value;
+  profileJob.textContent = profilePopupInputJob.value;
 }
 
 function handleCardSubmit(evt) {
@@ -153,9 +154,3 @@ function newCard() {
   const element = createElement(newElement);
   sectionElements.prepend(element);
 }
-
-
-
-
-
-

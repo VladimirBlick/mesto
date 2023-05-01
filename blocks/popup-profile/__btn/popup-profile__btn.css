@@ -1,4 +1,4 @@
-.popup__btn {
+.popup-profile__btn {
   font-size: 14px;
   line-height: 17px;
   all: unset;
@@ -12,13 +12,13 @@
   transition: opacity ease-in-out 0.2s;
 }
 
-.popup__btn:hover {
+.popup-profile__btn:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
 @media screen and (min-width:1000px) {
-  .popup__btn {
+  .popup-profile__btn {
     height: 50px;
     margin-top: 46px;
     font-size: 18px;
