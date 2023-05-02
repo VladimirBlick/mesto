@@ -8,10 +8,13 @@ const profilePopupInputJob = document.querySelector('.popup-profile__input_type_
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
-profilePopupInputJob.value = profileJob.textContent;
-profilePopupInputName.value = profileName.textContent;
+//переменные для фото попапа
+const imagePopup = document.querySelector('.popup-image');
+const imagePopupContainer = document.querySelector('.popup-image__container');
+const imagePopupSignature = document.querySelector('.popup-image__signature');
+const imageCloseBtn = document.querySelector('.popup-image__close-btn');
 
-//переменные для карточка попапа
+//переменные для карточки попапа
 const сard = document.querySelector('.popup-card');
 const cardOpenBtn = document.querySelector('.profile__add-button');
 const cardCloseBtn = document.querySelector('.popup-card__close-btn');
@@ -21,6 +24,9 @@ const cardContainer = document.querySelector('.popup-card__container');
 
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
+
+profilePopupInputJob.value = profileJob.textContent;
+profilePopupInputName.value = profileName.textContent;
 
 //открытие и закрытие попапов
 function openPopup() {
@@ -99,11 +105,6 @@ const createElement = (cardData) => {
   const elementCityName = cardElement.querySelector('.element__city-name');
   const elementCityLike = cardElement.querySelector('.element__city-like');
   const elementCityDelete = cardElement.querySelector('.element_delete');
-
-  const imagePopup = document.querySelector('.popup-image');
-  const imagePopupContainer = document.querySelector('.popup-image__container');
-  const imagePopupSignature = document.querySelector('.popup-image__signature');
-  const imageCloseBtn = document.querySelector('.popup-image__close-btn');
 
   elementCityName.textContent = cardData.name;
   elementImage.src = cardData.link;
