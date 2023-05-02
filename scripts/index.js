@@ -1,4 +1,4 @@
-//переменные для ПОПАПА (имя, работа)
+//переменные для профайл попапа
 const profilePopup = document.querySelector('.popup-profile');
 const profilePopupContainer = document.querySelector('.popup-profile__container');
 const profilePopupOpenBtn = document.querySelector('.profile__popup-profile');
@@ -11,7 +11,7 @@ const profileJob = document.querySelector('.profile__job');
 profilePopupInputJob.value = profileJob.textContent;
 profilePopupInputName.value = profileName.textContent;
 
-//переменные для КАРТОЧКИ
+//переменные для карточка попапа
 const сard = document.querySelector('.popup-card');
 const cardOpenBtn = document.querySelector('.profile__add-button');
 const cardCloseBtn = document.querySelector('.popup-card__close-btn');
@@ -22,7 +22,7 @@ const cardContainer = document.querySelector('.popup-card__container');
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
 
-//открытие и закрытие ПОПАП
+//открытие и закрытие попапов
 function openPopup() {
   profilePopup.classList.add('popup-profile_opened');
 }
@@ -31,12 +31,12 @@ function closePopup() {
   profilePopup.classList.remove('popup-profile_opened');
 }
 
-//слушатели для ПОПАП (имя, работа)
+//слушатели для профайл попапа
 profilePopupOpenBtn.addEventListener('click', openPopup);
 profilePopupCloseBtn.addEventListener('click', closePopup);
 profilePopupContainer.addEventListener('submit', handleFormSubmit);
 
-//слушатели для КАРТОЧКИ
+//слушатели для карточка попапа
 cardOpenBtn.addEventListener('click', openCard);
 cardCloseBtn.addEventListener('click', closeCard);
 cardContainer.addEventListener('submit', handleCardSubmit);
@@ -91,7 +91,7 @@ const initialCards = [
   }
 ];
 
-//КАРТОЧКА
+//карточка попап
 const createElement = (cardData) => {
   const cardElement = template.content.querySelector('.element').cloneNode(true);
 
@@ -153,4 +153,6 @@ function newCard() {
 
   const element = createElement(newElement);
   sectionElements.prepend(element);
+
+  document.querySelector('.popup-card__form').reset();
 }
