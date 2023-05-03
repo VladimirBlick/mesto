@@ -1,6 +1,6 @@
 //переменные для профайл попапа
 const profilePopup = document.querySelector('.popup-profile');
-const profilePopupContainer = document.querySelector('.popup-profile__container');
+const profilePopupForm = document.querySelector('.popup-profile__form');
 const profilePopupOpenBtn = document.querySelector('.profile__popup-profile');
 const profilePopupCloseBtn = document.querySelector('.popup-profile__close-btn');
 const profilePopupInputName = document.querySelector('.popup-profile__input_type_name');
@@ -29,48 +29,29 @@ profilePopupInputJob.value = profileJob.textContent;
 profilePopupInputName.value = profileName.textContent;
 
 //открытие и закрытие попапов
-function openPopup() {
-  profilePopup.classList.add('popup-profile_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
-function closePopup() {
-  profilePopup.classList.remove('popup-profile_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
-
-//слушатели для профайл попапа
-profilePopupOpenBtn.addEventListener('click', openPopup);
-profilePopupCloseBtn.addEventListener('click', closePopup);
-profilePopupContainer.addEventListener('submit', handleFormSubmit);
-
-//слушатели для карточка попапа
-cardOpenBtn.addEventListener('click', openCard);
-cardCloseBtn.addEventListener('click', closeCard);
-cardContainer.addEventListener('submit', handleCardSubmit);
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  closePopup();
+  closePopup(profilePopup);
   profileName.textContent = profilePopupInputName.value;
   profileJob.textContent = profilePopupInputJob.value;
 }
 
-function handleCardSubmit(evt) {
+function handlecardSubmit(evt) {
   evt.preventDefault();
-  closeCard();
-  newCard();
-}
-
-//открытие и закрытие КАРТОЧКИ
-function openCard() {
-  сard.classList.add('popup-card_opened');
-}
-
-function closeCard() {
-  сard.classList.remove('popup-card_opened');
+  closePopup(сard);
+  newcard();
 }
 
 //Шесть карточек «из коробки» и добавление новых
-const initialCards = [
+const initialcards = [
   {
     name: 'Омск',
     link: 'https://images.unsplash.com/photo-1653828030585-1aa093033717',
@@ -109,20 +90,16 @@ const createElement = (cardData) => {
   elementCityName.textContent = cardData.name;
   elementImage.src = cardData.link;
 
-  //открытие и закрытие ФОТКИ
-
+  //открытие и закрытие фотки
   elementImage.addEventListener('click', function () {
     //  всплывающее окно
-    imagePopup.classList.add('popup-image_opened');
+    imagePopup.classList.add('popup_opened');
     // Обновление содержимого всплывающего окна
     imagePopupContainer.src = cardData.link;
     imagePopupSignature.textContent = cardData.name;
   });
 
-  function closeImage() {
-    imagePopup.classList.remove('popup-image_opened');
-  }
-  imageCloseBtn.addEventListener('click', closeImage);
+  imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
 
   const handleDelete = () => {
     cardElement.remove();
@@ -138,22 +115,32 @@ const createElement = (cardData) => {
   return cardElement;
 };
 
-initialCards.forEach((card) => {
+initialcards.forEach((card) => {
   const element = createElement(card);
 
   sectionElements.appendChild(element);
 });
 
-function newCard() {
+function newcard() {
   const newElement = {
     name: cardInputName.value,
     link: cardInputImageLink.value,
   };
 
-  initialCards.splice(0, 0, newElement);
+  initialcards.splice(0, 0, newElement);
 
   const element = createElement(newElement);
   sectionElements.prepend(element);
 
   document.querySelector('.popup-card__form').reset();
 }
+
+//слушатели для профайл попапа
+profilePopupOpenBtn.addEventListener('click', () => openPopup(profilePopup));
+profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
+profilePopupForm.addEventListener('submit', handleFormSubmit);
+
+//слушатели для карточки попапа
+cardOpenBtn.addEventListener('click', () => openPopup(сard));
+cardCloseBtn.addEventListener('click', () => closePopup(сard));
+cardContainer.addEventListener('submit', handlecardSubmit);
