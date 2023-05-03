@@ -20,7 +20,7 @@ const cardOpenBtn = document.querySelector('.profile__add-button');
 const cardCloseBtn = document.querySelector('.popup-card__close-btn');
 const cardInputName = document.querySelector('.popup-card__input_name');
 const cardInputImageLink = document.querySelector('.popup-card__input_image');
-const cardContainer = document.querySelector('.popup-card__container');
+const cardForm = document.querySelector('.popup-card__form');
 
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
@@ -143,4 +143,4 @@ profilePopupForm.addEventListener('submit', handleFormSubmit);
 //слушатели для карточки попапа
 cardOpenBtn.addEventListener('click', () => openPopup(сard));
 cardCloseBtn.addEventListener('click', () => closePopup(сard));
-cardContainer.addEventListener('submit', handlecardSubmit);
+cardForm.addEventListener('submit', handlecardSubmit);
