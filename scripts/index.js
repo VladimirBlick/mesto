@@ -89,6 +89,7 @@ const createElement = (cardData) => {
 
   elementCityName.textContent = cardData.name;
   elementImage.src = cardData.link;
+  elementImage.alt = 'нет фото';
 
   //открытие и закрытие фотки
   elementImage.addEventListener('click', function () {
@@ -96,10 +97,9 @@ const createElement = (cardData) => {
     imagePopup.classList.add('popup_opened');
     // Обновление содержимого всплывающего окна
     imagePopupContainer.src = cardData.link;
+    imagePopupContainer.alt = 'нет фото';
     imagePopupSignature.textContent = cardData.name;
   });
-
-  imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
 
   const handleDelete = () => {
     cardElement.remove();
@@ -118,7 +118,7 @@ const createElement = (cardData) => {
 initialcards.forEach((card) => {
   const element = createElement(card);
 
-  sectionElements.appendChild(element);
+  sectionElements.append(element);
 });
 
 function newcard() {
@@ -126,8 +126,6 @@ function newcard() {
     name: cardInputName.value,
     link: cardInputImageLink.value,
   };
-
-  initialcards.splice(0, 0, newElement);
 
   const element = createElement(newElement);
   sectionElements.prepend(element);
@@ -144,3 +142,6 @@ profilePopupForm.addEventListener('submit', handleFormSubmit);
 cardOpenBtn.addEventListener('click', () => openPopup(сard));
 cardCloseBtn.addEventListener('click', () => closePopup(сard));
 cardForm.addEventListener('submit', handlecardSubmit);
+
+//слушатели для фото попапа
+imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
