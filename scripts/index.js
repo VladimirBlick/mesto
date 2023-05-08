@@ -7,6 +7,7 @@ const profilePopupInputName = document.querySelector('.popup-profile__input_type
 const profilePopupInputJob = document.querySelector('.popup-profile__input_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
+const popupOpened = document.querySelector('.popup_opened');
 
 //переменные для фото попапа
 const imagePopup = document.querySelector('.popup-image');
@@ -89,7 +90,7 @@ const createElement = (cardData) => {
 
   elementCityName.textContent = cardData.name;
   elementImage.src = cardData.link;
-  elementImage.alt = 'нет фото';
+  elementImage.alt = 'фотография недоступна';
 
   //открытие и закрытие фотки
   elementImage.addEventListener('click', function () {
@@ -97,7 +98,7 @@ const createElement = (cardData) => {
     imagePopup.classList.add('popup_opened');
     // Обновление содержимого всплывающего окна
     imagePopupContainer.src = cardData.link;
-    imagePopupContainer.alt = 'нет фото';
+    imagePopupContainer.alt = 'фотография недоступна';
     imagePopupSignature.textContent = cardData.name;
   });
 
@@ -136,12 +137,16 @@ function newcard() {
 //слушатели для профайл попапа
 profilePopupOpenBtn.addEventListener('click', () => openPopup(profilePopup));
 profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
+profilePopup.addEventListener('click', () => closePopup(profilePopup));
 profilePopupForm.addEventListener('submit', handleFormSubmit);
+
 
 //слушатели для карточки попапа
 cardOpenBtn.addEventListener('click', () => openPopup(сard));
 cardCloseBtn.addEventListener('click', () => closePopup(сard));
+сard.addEventListener('click', () => closePopup(сard));
 cardForm.addEventListener('submit', handlecardSubmit);
 
 //слушатели для фото попапа
 imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
+imagePopup.addEventListener('click', () => closePopup(imagePopup));
