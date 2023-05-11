@@ -36,31 +36,31 @@
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup-profile">
+  <div class="popup popup-profile">
     <div class="popup-profile__container">
       <button type="button" class="popup-profile__close-btn"></button>
       <h2 class="popup-profile__title">Редактировать профиль</h2>
-      <form name="popupProfileForm" class="popup-profile__form">
-        <input type="text" name="nameUser" class="popup-profile__input popup-profile__input_type_name">
-        <input type="text" name="jobUser" class="popup-profile__input popup-profile__input_type_job">
-        <button type="submit" class="popup-profile__btn">Сохранить</button>
+      <form name="popupProfileForm" class="popup-profile__form popup__form" novalidate>
+        <input required minlength="2" maxlength="40" type="text" name="nameUser" class="popup__input popup-profile__input popup-profile__input_type_name">
+        <input required minlength="2" maxlength="200" type="text" name="jobUser" class="popup__input popup-profile__input popup-profile__input_type_job">
+        <button type="submit" class="popup__button popup-profile__btn">Сохранить</button>
       </form>
     </div>
   </div>
 
-  <div class="popup-card">
+  <div class="popup popup-card">
     <div class="popup-card__container">
       <button type="button" class="popup-card__close-btn"></button>
       <h2 class="popup-card__title">Новое место</h2>
-      <form name="popup-card-Form" class="popup-card__form">
-        <input type="text" name="place" class="popup-card__input popup-card__input_name" placeholder="Название">
-        <input type="text" name="linkImage" class="popup-card__input popup-card__input_image" placeholder="Ссылка на картинку">
-        <button type="submit" class="popup-card__btn">Создать</button>
+      <form name="popup-card-Form" class="popup-card__form popup__form" novalidate>
+        <input required type="text" minlength="2" maxlength="30" name="place" class="popup__input popup-profile__input popup-card__input_name" placeholder="Название">
+        <input required type="url" name="linkImage" class="popup__input popup-profile__input popup-card__input_image" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__button popup-card__btn">Создать</button>
       </form>
     </div>
   </div>
 
-  <div class="popup-image">
+  <div class="popup popup-image">
     <div class="popup-image__form">
       <img class="popup-image__container">
       <p class="popup-image__signature"></p>
@@ -82,6 +82,7 @@
   </template>
 
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

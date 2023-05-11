@@ -25,6 +25,8 @@ const cardForm = document.querySelector('.popup-card__form');
 
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
+const popupAll = Array.from(document.querySelectorAll('.popup'));
+console.log(popupAll);
 
 profilePopupInputJob.value = profileJob.textContent;
 profilePopupInputName.value = profileName.textContent;
@@ -32,10 +34,29 @@ profilePopupInputName.value = profileName.textContent;
 //открытие и закрытие попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('click', handleClosePopup);
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('click', handleClosePopup);
+  document.removeEventListener('keydown', closePopupEsc);
+}
+
+const handleClosePopup = (evt) => {
+  const overlay = evt.target.classList.contains('popup');
+  const closeBtn = evt.target.classList.contains('popup__close-btn');
+
+  if (overlay || closeBtn) {
+    popupAll.forEach(closePopup);
+  }
+};
+
+const closePopupEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    popupAll.forEach(closePopup);
+  }
 }
 
 function handleFormSubmit(evt) {
@@ -137,14 +158,12 @@ function newcard() {
 //слушатели для профайл попапа
 profilePopupOpenBtn.addEventListener('click', () => openPopup(profilePopup));
 profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
-profilePopup.addEventListener('click', () => closePopup(profilePopup));
 profilePopupForm.addEventListener('submit', handleFormSubmit);
 
 
 //слушатели для карточки попапа
 cardOpenBtn.addEventListener('click', () => openPopup(сard));
 cardCloseBtn.addEventListener('click', () => closePopup(сard));
-сard.addEventListener('click', () => closePopup(сard));
 cardForm.addEventListener('submit', handlecardSubmit);
 
 //слушатели для фото попапа
