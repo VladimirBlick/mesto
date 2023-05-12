@@ -1,4 +1,12 @@
-//красное подчеркивание инпута и ошибка
+//проверяет инпут на валидность и показывает ошбики
+const checkInputValidity = (formElement, inputElement, obj) => {
+  if (!inputElement.validity.valid) {
+    yesInputError(formElement, inputElement, inputElement.validationMessage, obj);
+  } else {
+    noneInputError(formElement, inputElement, obj);
+  }
+};
+//добавляет ошибки
 const yesInputError = (formElement, inputElement, errorMessage, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(obj.inputErrorClass);
@@ -14,15 +22,6 @@ const noneInputError = (formElement, inputElement, obj) => {
   errorElement.textContent = '';
 };
 
-//проверяет инпут на валидность и показывает сообщения ошибок
-const checkInputValidity = (formElement, inputElement, obj) => {
-  if (!inputElement.validity.valid) {
-    yesInputError(formElement, inputElement, inputElement.validationMessage, obj);
-  } else {
-    noneInputError(formElement, inputElement, obj);
-  }
-};
-
 //проверка полей на валидацию, всё ли ок и все ли поля валидны
 const invalidInput = (inputList) => {
   return inputList.some((inputElement) => { //false - все валидны
@@ -33,21 +32,21 @@ const invalidInput = (inputList) => {
 const passiveButton = (buttonElement, obj) => {
   buttonElement.classList.add(obj.inactiveButtonClass);
   buttonElement.setAttribute('disabled', true);
-}
+};
 
 const activateButton = (buttonElement, obj) => {
   buttonElement.classList.remove(obj.inactiveButtonClass);
   buttonElement.removeAttribute('disabled', true);
-}
+};
 
-//блокировка кнопки, если поля не валидны
+//если инпуты не валидны, кнопка не жмется
 const toggleButtonState = (inputList, buttonElement, obj) => {
-  if (invalidInput(inputList)) { //проверка есть ли невалидные поля
+  if (invalidInput(inputList)) { //есть ли невалидные поля?
     passiveButton(buttonElement, obj);
   } else {
     activateButton(buttonElement, obj);
   }
-}
+};
 
 //слушатель на все инпуты с проверкой полей и активацией кнопки
 const setEventListeners = (formElement, obj) => {
@@ -59,7 +58,7 @@ const setEventListeners = (formElement, obj) => {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, obj);
-      // чтобы проверять его при изменении любого из полей
+      //  проверка при изменении любого из полей
       toggleButtonState(inputList, buttonElement, obj);
     });
   });
@@ -86,45 +85,10 @@ enableValidation({
 });
 
 
-// const enableValidation = (obj) => {
-//   const formList = Array.from(document.querySelectorAll(obj.formSelector));
-//   formList.forEach((formElement) => {
-//     formElement.addEventListener('submit', function (evt) {
-//       evt.preventDefault();
-//     });
-//     setEventListeners(formElement, obj);
-//   });
-// };
-
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-
-// const form = document.querySelector('.popup__form'); //нашли форму
-// console.log(form);
-
-// const enableValidation = () => {
-
-// form.addEventListener('submit', (evt) => { //повесили слушатель и функцию стрелочную
-//   evt.preventDefault(); // которая останавливает отправку формы
-//   const popupInput = Array.from (form.querySelectorAll('.popup__input')); //находим инпуты в форме и делаем из них массив
-// console.log(popupInput)
-//   // popupInput.forEach(input =>{  //перебираем инпуты в массиве с помощью форИч
-
-//   } })
-
 //Сама логика валидации
 // 1. объявляем переменную с формой где инпуты
 // 2. Вешаем слушатель на форму
 // 3. Находим инпуты в форме
 // 4. Делаем из инпутов массив и перебираем его форИч
-// 5. Включаем валидацию инпутов (enableValidation = форма)
-
-// const popupProfileSubmit = document.querySelector('.popup-profile__btn');
-
-// popupProfileSubmit.addEventListener('click', () => {
-//   const inputProfile = Array.from(document.querySelectorAll('.popup-profile__input'));
-// })
-
-// inputProfile.forEach(inputElement => {
-//   console.log(inputElement);
-// })
+// 5. Включаем валидацию инпутов (enableValidation)
+// 6. Если инпуты валидны - кнопка активная, если нет - пассивная

@@ -1,3 +1,4 @@
+
 //переменные для профайл попапа
 const profilePopup = document.querySelector('.popup-profile');
 const profilePopupForm = document.querySelector('.popup-profile__form');
@@ -26,7 +27,6 @@ const cardForm = document.querySelector('.popup-card__form');
 const template = document.getElementById('card-template');
 const sectionElements = document.querySelector('.elements');
 const popupAll = Array.from(document.querySelectorAll('.popup'));
-console.log(popupAll);
 
 profilePopupInputJob.value = profileJob.textContent;
 profilePopupInputName.value = profileName.textContent;
