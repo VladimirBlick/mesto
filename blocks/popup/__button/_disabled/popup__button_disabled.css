@@ -8,7 +8,7 @@
   height: 46px;
   color: rgba(0, 0, 0, 0.2);
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.2);;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   transition: opacity ease-in-out 0.2s;
 }
