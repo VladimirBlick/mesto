@@ -1,5 +1,5 @@
-//делает поле красным и показывает снизу ошибку
-const showInputError = (formElement, inputElement, errorMessage, obj) => {
+//красное подчеркивание инпута и ошибка
+const yesInputError = (formElement, inputElement, errorMessage, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(obj.inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -7,30 +7,30 @@ const showInputError = (formElement, inputElement, errorMessage, obj) => {
 };
 
 //убирает ошибки
-const hideInputError = (formElement, inputElement, obj) => {
+const noneInputError = (formElement, inputElement, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(obj.inputErrorClass);
   errorElement.classList.remove(obj.errorClass);
   errorElement.textContent = '';
 };
 
-//проверяет инпут на валидность при наборе символов и выводит предупрждающие сообщения
+//проверяет инпут на валидность и показывает сообщения ошибок
 const checkInputValidity = (formElement, inputElement, obj) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, obj);
+    yesInputError(formElement, inputElement, inputElement.validationMessage, obj);
   } else {
-    hideInputError(formElement, inputElement, obj);
+    noneInputError(formElement, inputElement, obj);
   }
 };
 
-//ф-я обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?»
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => { //false - все поля валидны
-    return !inputElement.validity.valid; //не true - нет невалидных полей
+//проверка полей на валидацию, всё ли ок и все ли поля валидны
+const invalidInput = (inputList) => {
+  return inputList.some((inputElement) => { //false - все валидны
+    return !inputElement.validity.valid; //не true - нет невалидных
   });
 };
 
-const deactivateButton = (buttonElement, obj) => {
+const passiveButton = (buttonElement, obj) => {
   buttonElement.classList.add(obj.inactiveButtonClass);
   buttonElement.setAttribute('disabled', true);
 }
@@ -40,16 +40,16 @@ const activateButton = (buttonElement, obj) => {
   buttonElement.removeAttribute('disabled', true);
 }
 
-//блокирует кнопку, если хотя бы одно поле невалидно
+//блокировка кнопки, если поля не валидны
 const toggleButtonState = (inputList, buttonElement, obj) => {
-  if (hasInvalidInput(inputList)) { //проверяем есть ли невалидные поля
-    deactivateButton(buttonElement, obj);
+  if (invalidInput(inputList)) { //проверка есть ли невалидные поля
+    passiveButton(buttonElement, obj);
   } else {
     activateButton(buttonElement, obj);
   }
 }
 
-//навешивает слушатель на все инпуты с проверкой полей и активацией кнопки
+//слушатель на все инпуты с проверкой полей и активацией кнопки
 const setEventListeners = (formElement, obj) => {
   const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
   const buttonElement = formElement.querySelector(obj.submitButtonSelector);
@@ -111,8 +111,6 @@ enableValidation({
 //   // popupInput.forEach(input =>{  //перебираем инпуты в массиве с помощью форИч
 
 //   } })
-
-
 
 //Сама логика валидации
 // 1. объявляем переменную с формой где инпуты

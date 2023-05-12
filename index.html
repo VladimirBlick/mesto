@@ -45,13 +45,13 @@
         <label class="popup__input-element">
         <input class="popup__input popup-profile__input popup-profile__input_type_name"
         id="name" placeholder="Имя" required minlength="2" maxlength="40" type="text" name="nameUser">
-        <span class="name-error popup__error"></span>
+        <span class="popup__error name-error"></span>
       </label>
 
         <label class="popup__input-element">
         <input class="popup__input popup-profile__input popup-profile__input_type_job"
         id="job" placeholder="Деятельность" required minlength="2" maxlength="200" type="text" name="jobUser">
-        <span class="name-error popup__error"></span>
+        <span class="popup__error job-error"></span>
       </label>
         <button type="submit" class="popup__button popup-profile__btn">Сохранить</button>
       </form>
@@ -67,11 +67,13 @@
         <label class="popup__input-element">
         <input class="popup__input popup-profile__input popup-card__input_name"
         id="place" placeholder="Название" required type="text" minlength="2" maxlength="30" name="place">
+        <span class="popup__error place-error"></span>
       </label>
 
         <label class="popup__input-element">
         <input class="popup__input popup-profile__input popup-card__input_image"
-        id="linkImage" placeholder="Ссылка на картинку" required type="url" name="linkImage" >
+        id="linkImage" placeholder="Ссылка на картинку" required type="url" name="linkImage">
+        <span class="popup__error linkImage-error"></span>
       </label>
         <button type="submit" class="popup__button popup-card__btn">Создать</button>
       </form>

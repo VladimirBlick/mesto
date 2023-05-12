@@ -2,7 +2,7 @@
   font-size: 14px;
   line-height: 17px;
   all: unset;
-  margin-top: 45px;
+  margin-top: 20px;
   background-color: #000;
   width: 100%;
   height: 46px;
@@ -20,7 +20,7 @@
 @media screen and (min-width:1000px) {
   .popup-profile__btn {
     height: 50px;
-    margin-top: 46px;
+    margin-top: 20px;
     font-size: 18px;
     line-height: 22px;
   }
