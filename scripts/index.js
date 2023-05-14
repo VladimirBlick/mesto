@@ -16,7 +16,7 @@ const imagePopupSignature = document.querySelector('.popup-image__signature');
 const imageCloseBtn = document.querySelector('.popup-image__close-btn');
 
 //переменные для карточки попапа
-const сard = document.querySelector('.popup-card');
+const popupCard = document.querySelector('.popup-card');
 const cardOpenBtn = document.querySelector('.profile__add-button');
 const cardCloseBtn = document.querySelector('.popup-card__close-btn');
 const cardInputName = document.querySelector('#place');
@@ -71,7 +71,7 @@ function handleProfileFormSubmit(evt) {
 
 function handleCardSubmit(evt) {
   evt.preventDefault();
-  closePopup(сard);
+  closePopup(popupCard);
   createNewCard();
 }
 
@@ -137,8 +137,8 @@ profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
 profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
 
 //слушатели для карточки попапа
-cardOpenBtn.addEventListener('click', () => openPopup(сard));
-cardCloseBtn.addEventListener('click', () => closePopup(сard));
+cardOpenBtn.addEventListener('click', () => openPopup(popupCard));
+cardCloseBtn.addEventListener('click', () => closePopup(popupCard));
 cardForm.addEventListener('submit', handleCardSubmit);
 
 //слушатели для фото попапа

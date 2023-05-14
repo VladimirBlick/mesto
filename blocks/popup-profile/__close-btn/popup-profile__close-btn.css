@@ -1,5 +1,5 @@
 .popup-profile__close-btn {
-  all: initial;
+  all: unset;
   width: 20px;
   padding: 0;
   margin: 0;

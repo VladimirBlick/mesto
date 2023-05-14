@@ -86,12 +86,10 @@ enableValidation({
 
 const popupCardBtn = document.querySelector('.popup-card__close-btn');
 
-function disableSubmitButton(popupCardBtn) {
-  const settings = {
-    inactiveButtonClass: 'popup__button_disabled',
-  };
-  popupCardBtn.setAttribute('disabled', true);
-  popupCardBtn.classList.add(settings.inactiveButtonClass);
+function disableSubmitButton() {
+  if (popupCardBtn) {
+    popupCardBtn.setAttribute('disabled', true);
+  }
 }
 
 //Сама логика валидации
