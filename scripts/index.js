@@ -40,11 +40,17 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupEsc);
 }
 
-const openEditForm = () => {
-  profilePopupInputName.value =  profileName.textContent;
+const openProfileForm = () => {
+  profilePopupInputName.value = profileName.textContent;
   profilePopupInputJob.value = profileJob.textContent;
-  // activateButton(editProfilePopup.querySelector('.popup__save-btn'), {inactiveButtonClass: 'popup__save-btn_disabled'});
+  activateButton(profilePopup.querySelector('.popup__button'), { inactiveButtonClass: 'popup__button_disabled' });
   openPopup(profilePopup);
+}
+
+const openCardForm = () => {
+  cardForm.reset();
+  passiveButton(popupCard.querySelector('.popup__button'), { inactiveButtonClass: 'popup__button_disabled' });
+  openPopup(popupCard);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -63,14 +69,18 @@ const handleClosePopup = (evt) => {
     // закрыть найденный открытый popup, если такой есть
     if (popupOpened) {
       closePopup(popupOpened);
-    }}};
+    }
+  }
+};
 
 const closePopupEsc = (evt) => {
   if (evt.key === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened');
     if (popupOpened) {
       closePopup(popupOpened);
-  }}};
+    }
+  }
+};
 
 function handleCardSubmit(evt) {
   evt.preventDefault();
@@ -130,17 +140,17 @@ function createNewCard() {
   const element = createElement(newElement);
   sectionElements.prepend(element);
 
- const cardForm = document.querySelector('.popup-card__form');
- cardForm.reset();
+  const cardForm = document.querySelector('.popup-card__form');
+  cardForm.reset();
 }
 
 //слушатели для профайл попапа
-profilePopupOpenBtn.addEventListener('click', () => openEditForm(profilePopup));
+profilePopupOpenBtn.addEventListener('click', () => openProfileForm(profilePopup));
 profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
 profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
 
 //слушатели для карточки попапа
-cardOpenBtn.addEventListener('click', () => openPopup(popupCard));
+cardOpenBtn.addEventListener('click', () => openCardForm(popupCard));
 cardCloseBtn.addEventListener('click', () => closePopup(popupCard));
 cardForm.addEventListener('submit', handleCardSubmit);
 
