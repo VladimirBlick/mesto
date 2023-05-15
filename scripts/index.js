@@ -32,16 +32,26 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('click', handleClosePopup);
   document.addEventListener('keydown', closePopupEsc);
-  const popupCardBtn = popup.querySelector('.popup__button'); // получаем кнопку из попапа
-  disableSubmitButton(popupCardBtn);
-  profilePopupInputJob.value = profileJob.textContent;
-  profilePopupInputName.value = profileName.textContent;
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('click', handleClosePopup);
   document.removeEventListener('keydown', closePopupEsc);
+}
+
+const openEditForm = () => {
+  profilePopupInputName.value =  profileName.textContent;
+  profilePopupInputJob.value = profileJob.textContent;
+  // activateButton(editProfilePopup.querySelector('.popup__save-btn'), {inactiveButtonClass: 'popup__save-btn_disabled'});
+  openPopup(profilePopup);
+}
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = profilePopupInputName.value;
+  profileJob.textContent = profilePopupInputJob.value;
+  closePopup(profilePopup);
 }
 
 const handleClosePopup = (evt) => {
@@ -61,13 +71,6 @@ const closePopupEsc = (evt) => {
     if (popupOpened) {
       closePopup(popupOpened);
   }}};
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  closePopup(profilePopup);
-  profileName.textContent = profilePopupInputName.value;
-  profileJob.textContent = profilePopupInputJob.value;
-}
 
 function handleCardSubmit(evt) {
   evt.preventDefault();
@@ -132,7 +135,7 @@ function createNewCard() {
 }
 
 //слушатели для профайл попапа
-profilePopupOpenBtn.addEventListener('click', () => openPopup(profilePopup));
+profilePopupOpenBtn.addEventListener('click', () => openEditForm(profilePopup));
 profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
 profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
 

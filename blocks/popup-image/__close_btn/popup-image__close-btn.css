@@ -1,5 +1,5 @@
 .popup-image__close-btn {
-  all: unset;
+  all: initial;
   width: 20px;
   padding: 0;
   margin: 0;
