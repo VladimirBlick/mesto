@@ -25,3 +25,5 @@ const initialcards = [
     link: 'https://images.unsplash.com/photo-1664277132722-b6340560eda9'
   }
 ];
+
+export default initialcards;
