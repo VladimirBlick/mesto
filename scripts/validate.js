@@ -1,4 +1,4 @@
-//проверяет инпут на валидность и показывает ошбики
+ //проверяет инпут на валидность и показывает ошбики
 const checkInputValidity = (formElement, inputElement, obj) => {
   if (!inputElement.validity.valid) {
     yesInputError(formElement, inputElement, inputElement.validationMessage, obj);
