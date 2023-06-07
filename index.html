@@ -44,14 +44,14 @@
       <form class="popup-profile__form popup__form" name="popupProfileForm" novalidate>
         <label class="popup__input-element">
           <input class="popup__input" id="name" placeholder="Имя"
-            required minlength="2" maxlength="40" type="text" name="nameUser">
-          <span class="popup__error name-error"></span>
+            required minlength="2" maxlength="40" type="text" name="name">
+          <span class="popup__error popup__error_name"></span>
         </label>
 
         <label class="popup__input-element">
           <input class="popup__input" id="job"
-            placeholder="Деятельность" required minlength="2" maxlength="200" type="text" name="jobUser">
-          <span class="popup__error job-error"></span>
+            placeholder="Деятельность" required minlength="2" maxlength="200" type="text" name="job">
+          <span class="popup__error popup__error_job"></span>
         </label>
         <button type="submit" class="popup__button popup-profile__btn">Сохранить</button>
       </form>
@@ -67,13 +67,13 @@
         <label class="popup__input-element">
           <input class="popup__input" id="place" placeholder="Название"
             required type="text" minlength="2" maxlength="30" name="place">
-          <span class="popup__error place-error"></span>
+          <span class="popup__error popup__error_place"></span>
         </label>
 
         <label class="popup__input-element">
-          <input class="popup__input" id="linkImage"
-            placeholder="Ссылка на картинку" required type="url" name="linkImage">
-          <span class="popup__error linkImage-error"></span>
+          <input class="popup__input" id="url"
+            placeholder="Ссылка на картинку" required type="url" name="url">
+          <span class="popup__error popup__error_url"></span>
         </label>
         <button type="submit" class="popup__button popup-card__btn">Создать</button>
       </form>
@@ -101,7 +101,10 @@
 
   </template>
 
+
   <script type="module" src="./scripts/index.js"></script>
+
+
 
 
 </body>

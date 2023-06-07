@@ -1,5 +1,6 @@
 import initialcards from './initialcards.js'
 import Card from './card.js'
+import FormValidator from './FormValidator.js'
 
 //переменные для профайл попапа
 const profilePopup = document.querySelector('.popup-profile');
@@ -11,6 +12,7 @@ const profilePopupInputJob = document.querySelector('#job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const popupOpened = document.querySelector('.popup_opened');
+const profileSubmit = document.querySelector('.popup-profile__btn');
 
 //переменные для фото попапа
 const imagePopup = document.querySelector('.popup-image');
@@ -23,13 +25,35 @@ const popupCard = document.querySelector('.popup-card');
 const cardOpenBtn = document.querySelector('.profile__add-button');
 const cardCloseBtn = document.querySelector('.popup-card__close-btn');
 const cardInputName = document.querySelector('#place');
-const cardInputImageLink = document.querySelector('#linkImage');
+const cardInputImageLink = document.querySelector('#url');
 const cardForm = document.querySelector('.popup-card__form');
+const cardSubmit = document.querySelector('.popup-card__btn');
 
+const inputAll = document.querySelectorAll('.popup__input')
 const template = document.querySelector('#card-template');
 const templateElement = template.content.querySelector('.element');
 const sectionElements = document.querySelector('.elements');
 const popupAll = Array.from(document.querySelectorAll('.popup'));
+
+// конфиг валидации
+const validatorConfig = {
+  //  allforms: document.forms,
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  errorSelectorTemplate: '.popup__error_',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_error',
+  textErrorClass: 'popup__error_visible'
+};
+
+
+//экземпляр класса для профайл попапа
+const profilePopupValidator = new FormValidator(validatorConfig, profilePopupForm)
+profilePopupValidator.enableValidation();
+
+//экземпляр класса для карточки попапа
+const cardPopupValidator = new FormValidator(validatorConfig, cardForm)
+cardPopupValidator.enableValidation();
 
 //открытие и закрытие попапов
 function openPopup(popup) {
@@ -45,15 +69,19 @@ function closePopup(popup) {
 }
 
 const openProfileForm = () => {
+  profilePopupValidator.resetErrorOpenForm();
+  // resetErrorOpenForm(profilePopup);
+  // toggleButtonState(inputAll, profileSubmit, validatorConfig.inactiveButtonClass)
   profilePopupInputName.value = profileName.textContent;
   profilePopupInputJob.value = profileJob.textContent;
-  activateButton(profilePopup.querySelector('.popup__button'), { inactiveButtonClass: 'popup__button_disabled' });
   openPopup(profilePopup);
 }
 
 const openCardForm = () => {
+  cardPopupValidator.resetErrorOpenForm();
+  // resetErrorOpenForm(popupCard);
   cardForm.reset();
-  passiveButton(popupCard.querySelector('.popup__button'), { inactiveButtonClass: 'popup__button_disabled' });
+  // toggleButtonState(inputAll, cardSubmit, validatorConfig.inactiveButtonClass)
   openPopup(popupCard);
 }
 
@@ -101,8 +129,8 @@ function handleCardSubmit(evt) {
 const selectorTemplate = '#card-template'
 
 // функция для открытия попапа с картинкой
-function openImagePopup (cardData) {
-   elementCityName.textContent = cardData.name;
+function openImagePopup(cardData) {
+  elementCityName.textContent = cardData.name;
   elementImage.src = cardData.link;
   elementImage.alt = 'фотография недоступна';
   openPopup(imagePopup)
@@ -110,20 +138,20 @@ function openImagePopup (cardData) {
 
 
 // добавление карточки в тот контейнер, который нам нужен
-function addCard (container, card) {
+function addCard(container, card) {
   container.append(card);
 }
 
 // дефолтные карточки из массива
 initialcards.forEach(element => {
-addCard(sectionElements, createNewCard(element ))
-// sectionElements.append(element);
+  addCard(sectionElements, createNewCard(element))
+  // sectionElements.append(element);
 });
 
 function createNewCard(cardData) {
   const element = new Card(cardData, selectorTemplate, openImagePopup);
-   const cardElement = element.createCard();
-   return cardElement;
+  const cardElement = element.createCard();
+  return cardElement;
 }
 
 function addCardToContainer(cardMarkup) {
@@ -133,12 +161,13 @@ function addCardToContainer(cardMarkup) {
 
 
 // //слушатели для профайл попапа
-profilePopupOpenBtn.addEventListener('click', () => openPopup(profilePopup));
+profilePopupOpenBtn.addEventListener('click', () => openProfileForm(profilePopup));
 profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
 profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
 
+
 // //слушатели для карточки попапа
-cardOpenBtn.addEventListener('click', () => openPopup(popupCard));
+cardOpenBtn.addEventListener('click', () => openCardForm(popupCard));
 cardCloseBtn.addEventListener('click', () => closePopup(popupCard));
 cardForm.addEventListener('submit', handleCardSubmit);
 
@@ -146,47 +175,3 @@ cardForm.addEventListener('submit', handleCardSubmit);
 imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
 // imagePopup.addEventListener('click', () => closePopup(imagePopup));
 
-
-
-//карточка попап
-// const createElement = (cardData) => {
-//   const cardElement = template.content.querySelector('.element').cloneNode(true);
-
-//  const elementImage = cardElement.querySelector('.element__image');
-//  const elementCityName = cardElement.querySelector('.element__city-name');
-//   const elementCityLike = cardElement.querySelector('.element__city-like');
-//   const elementCityDelete = cardElement.querySelector('.element_delete');
-
-//   elementCityName.textContent = cardData.name;
-//   elementImage.src = cardData.link;
-//   elementImage.alt = 'фотография недоступна';
-// }
-// //открытие и закрытие фотки
-// elementImage.addEventListener('click', function () {
-//   //  всплывающее окно
-//   openImagePopup()
-//     });
-
-// // открытие и закрытие фотки
-//   elementImage.addEventListener('click', function () {
-// //  всплывающее окно
-//     openPopup(imagePopup)
-//     // Обновление содержимого всплывающего окна
-//     imagePopupContainer.src = cardData.link;
-//     imagePopupContainer.alt = 'фотография недоступна';
-//     imagePopupSignature.textContent = cardData.name;
-//   });
-
-  // const handleDelete = () => {
-  //   cardElement.remove();
-  // };
-
-  // const handleLike = () => {
-  //   elementCityLike.classList.toggle('element__city-like_active');
-  // }
-
-  // elementCityLike.addEventListener('click', handleLike);
-  // elementCityDelete.addEventListener('click', handleDelete);
-
-//   return cardElement;
-// }
