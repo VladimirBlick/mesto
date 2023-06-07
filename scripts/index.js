@@ -11,8 +11,7 @@ const profilePopupInputName = document.querySelector('#name');
 const profilePopupInputJob = document.querySelector('#job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const popupOpened = document.querySelector('.popup_opened');
-const profileSubmit = document.querySelector('.popup-profile__btn');
+
 
 //переменные для фото попапа
 const imagePopup = document.querySelector('.popup-image');
@@ -27,17 +26,11 @@ const cardCloseBtn = document.querySelector('.popup-card__close-btn');
 const cardInputName = document.querySelector('#place');
 const cardInputImageLink = document.querySelector('#url');
 const cardForm = document.querySelector('.popup-card__form');
-const cardSubmit = document.querySelector('.popup-card__btn');
 
-const inputAll = document.querySelectorAll('.popup__input')
-const template = document.querySelector('#card-template');
-const templateElement = template.content.querySelector('.element');
 const sectionElements = document.querySelector('.elements');
-const popupAll = Array.from(document.querySelectorAll('.popup'));
 
 // конфиг валидации
 const validatorConfig = {
-  //  allforms: document.forms,
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   errorSelectorTemplate: '.popup__error_',
@@ -70,8 +63,6 @@ function closePopup(popup) {
 
 const openProfileForm = () => {
   profilePopupValidator.resetErrorOpenForm();
-  // resetErrorOpenForm(profilePopup);
-  // toggleButtonState(inputAll, profileSubmit, validatorConfig.inactiveButtonClass)
   profilePopupInputName.value = profileName.textContent;
   profilePopupInputJob.value = profileJob.textContent;
   openPopup(profilePopup);
@@ -79,9 +70,7 @@ const openProfileForm = () => {
 
 const openCardForm = () => {
   cardPopupValidator.resetErrorOpenForm();
-  // resetErrorOpenForm(popupCard);
   cardForm.reset();
-  // toggleButtonState(inputAll, cardSubmit, validatorConfig.inactiveButtonClass)
   openPopup(popupCard);
 }
 
@@ -145,7 +134,6 @@ function addCard(container, card) {
 // дефолтные карточки из массива
 initialcards.forEach(element => {
   addCard(sectionElements, createNewCard(element))
-  // sectionElements.append(element);
 });
 
 function createNewCard(cardData) {
@@ -173,5 +161,4 @@ cardForm.addEventListener('submit', handleCardSubmit);
 
 // //слушатели для фото попапа
 imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
-// imagePopup.addEventListener('click', () => closePopup(imagePopup));
 
