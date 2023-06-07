@@ -147,12 +147,10 @@ function addCardToContainer(cardMarkup) {
 }
 
 
-
 // //слушатели для профайл попапа
 profilePopupOpenBtn.addEventListener('click', () => openProfileForm(profilePopup));
 profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
 profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
-
 
 // //слушатели для карточки попапа
 cardOpenBtn.addEventListener('click', () => openCardForm(popupCard));
