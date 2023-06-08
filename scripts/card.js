@@ -1,14 +1,11 @@
 class Card {
   constructor (cardData, selectorTemplate, openImagePopup) {
     this._cardData = cardData;
-    this._link = cardData.link;
-    this._name = cardData.name;
     this._selectorTemplate = selectorTemplate;
     this._openImagePopup = openImagePopup;
   }
 
   _cloneTemplale() {
-  // const template = document.querySelector(this._selectorTemplate).content.querySelector('element').cloneNode(true);
   return document.querySelector(this._selectorTemplate).content.querySelector('.element').cloneNode(true);
   }
 
@@ -35,11 +32,11 @@ class Card {
     this._elementCityLike = this._cloneElement.querySelector('.element__city-like');
     this._elementCityDelete = this._cloneElement.querySelector('.element_delete');
     this._elementCityName = this._cloneElement.querySelector('.element__city-name');
-    this._elementImage.src = this._link;
-    this._elementImage.alt = this._name;
-    this._elementCityName.textContent = this._name;
+    this._elementImage.src = this._cardData.link;
+    this._elementImage.alt = this._cardData.name;
+    this._elementCityName.textContent = this._cardData.name;
     this._setEventListeners();
-    return this._cloneElement; 
+    return this._cloneElement;
   }
   }
 

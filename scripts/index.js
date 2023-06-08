@@ -34,7 +34,7 @@ const validatorConfig = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   errorSelectorTemplate: '.popup__error_',
-  inactiveButtonClass: 'popup__button_disabled',
+  disableButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_error',
   textErrorClass: 'popup__error_visible'
 };
@@ -62,14 +62,14 @@ function closePopup(popup) {
 }
 
 const openProfileForm = () => {
-  profilePopupValidator.resetErrorOpenForm();
+  profilePopupValidator.resetValidationState();
   profilePopupInputName.value = profileName.textContent;
   profilePopupInputJob.value = profileJob.textContent;
   openPopup(profilePopup);
 }
 
 const openCardForm = () => {
-  cardPopupValidator.resetErrorOpenForm();
+  cardPopupValidator.resetValidationState();
   cardForm.reset();
   openPopup(popupCard);
 }
@@ -82,10 +82,10 @@ function handleProfileFormSubmit(evt) {
 }
 
 const handleClosePopup = (evt) => {
-  const overlay = evt.target.classList.contains('popup');
+  const isOverlay = evt.target.classList.contains('popup');
   const closeBtn = evt.target.classList.contains('popup__close-btn');
 
-  if (overlay || closeBtn) {
+  if (isOverlay || closeBtn) {
     const popupOpened = document.querySelector('.popup_opened');
     // закрыть найденный открытый popup, если такой есть
     if (popupOpened) {
@@ -112,7 +112,6 @@ function handleCardSubmit(evt) {
   };
   const cardMarkup = createNewCard(newElement);
   addCardToContainer(cardMarkup);
-  cardForm.reset();
 }
 
 const selectorTemplate = '#card-template'
