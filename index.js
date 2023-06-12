@@ -1,6 +1,8 @@
-import initialcards from './initialcards.js'
-import Card from './card.js'
-import FormValidator from './FormValidator.js'
+import initialcards from './scripts/initialcards.js'
+import Card from './scripts/card.js'
+import FormValidator from './scripts/FormValidator.js'
+import popupWithImage from './scripts/popupWithImage.js'
+
 
 //переменные для профайл попапа
 const profilePopup = document.querySelector('.popup-profile');
@@ -49,17 +51,17 @@ const cardPopupValidator = new FormValidator(validatorConfig, cardForm)
 cardPopupValidator.enableValidation();
 
 //открытие и закрытие попапов
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('click', handleClosePopup);
-  document.addEventListener('keydown', closePopupEsc);
-}
+// function openPopup(popup) {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('click', handleClosePopup);
+//   document.addEventListener('keydown', closePopupEsc);
+// }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('click', handleClosePopup);
-  document.removeEventListener('keydown', closePopupEsc);
-}
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('click', handleClosePopup);
+//   document.removeEventListener('keydown', closePopupEsc);
+// }
 
 const openProfileForm = () => {
   profilePopupValidator.resetValidationState();
@@ -81,27 +83,27 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 }
 
-const handleClosePopup = (evt) => {
-  const isOverlay = evt.target.classList.contains('popup');
-  const closeBtn = evt.target.classList.contains('popup__close-btn');
+// const handleClosePopup = (evt) => {
+//   const isOverlay = evt.target.classList.contains('popup');
+//   const closeBtn = evt.target.classList.contains('popup__close-btn');
 
-  if (isOverlay || closeBtn) {
-    const popupOpened = document.querySelector('.popup_opened');
-    // закрыть найденный открытый popup, если такой есть
-    if (popupOpened) {
-      closePopup(popupOpened);
-    }
-  }
-};
+//   if (isOverlay || closeBtn) {
+//     const popupOpened = document.querySelector('.popup_opened');
+//     // закрыть найденный открытый popup, если такой есть
+//     if (popupOpened) {
+//       closePopup(popupOpened);
+//     }
+//   }
+// };
 
-const closePopupEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened');
-    if (popupOpened) {
-      closePopup(popupOpened);
-    }
-  }
-};
+// const closePopupEsc = (evt) => {
+//   if (evt.key === 'Escape') {
+//     const popupOpened = document.querySelector('.popup_opened');
+//     if (popupOpened) {
+//       closePopup(popupOpened);
+//     }
+//   }
+// };
 
 function handleCardSubmit(evt) {
   evt.preventDefault();
@@ -117,13 +119,15 @@ function handleCardSubmit(evt) {
 const selectorTemplate = '#card-template'
 
 // функция для открытия попапа с картинкой
-function openImagePopup(cardData) {
-  elementCityName.textContent = cardData.name;
-  elementImage.src = cardData.link;
-  elementImage.alt = 'фотография недоступна';
-  openPopup(imagePopup)
-}
+// function openImagePopup(cardData) {
+//   elementCityName.textContent = cardData.name;
+//   elementImage.src = cardData.link;
+//   elementImage.alt = 'фотография недоступна';
+//   openPopup(imagePopup)
+// }
 
+const popupImage = new popupWithImage ()
+popupImage.setEventListener()
 
 // добавление карточки в тот контейнер, который нам нужен
 function addCard(container, card) {
@@ -136,7 +140,7 @@ initialcards.forEach(element => {
 });
 
 function createNewCard(cardData) {
-  const element = new Card(cardData, selectorTemplate, openImagePopup);
+  const element = new Card(cardData, selectorTemplate, popupImage.open);
   const cardElement = element.createCard();
   return cardElement;
 }
@@ -158,4 +162,5 @@ cardForm.addEventListener('submit', handleCardSubmit);
 
 // //слушатели для фото попапа
 imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
+
 
