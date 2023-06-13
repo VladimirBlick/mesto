@@ -1,7 +1,9 @@
 import initialcards from './scripts/initialcards.js'
 import Card from './scripts/card.js'
 import FormValidator from './scripts/FormValidator.js'
+import popup from './scripts/popup.js'
 import popupWithImage from './scripts/popupWithImage.js'
+
 
 
 //переменные для профайл попапа
@@ -30,6 +32,8 @@ const cardInputImageLink = document.querySelector('#url');
 const cardForm = document.querySelector('.popup-card__form');
 
 const sectionElements = document.querySelector('.elements');
+const popupSelectorProfile = '.popup-profile'
+const popupSelectorImage = '.popup-image'
 
 // конфиг валидации
 const validatorConfig = {
@@ -41,6 +45,7 @@ const validatorConfig = {
   textErrorClass: 'popup__error_visible'
 };
 
+const popupImage = new popupWithImage(popupSelectorImage);
 
 //экземпляр класса для профайл попапа
 const profilePopupValidator = new FormValidator(validatorConfig, profilePopupForm)
@@ -126,8 +131,7 @@ const selectorTemplate = '#card-template'
 //   openPopup(imagePopup)
 // }
 
-const popupImage = new popupWithImage ()
-popupImage.setEventListener()
+
 
 // добавление карточки в тот контейнер, который нам нужен
 function addCard(container, card) {
@@ -161,6 +165,6 @@ cardCloseBtn.addEventListener('click', () => closePopup(popupCard));
 cardForm.addEventListener('submit', handleCardSubmit);
 
 // //слушатели для фото попапа
-imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
+// imageCloseBtn.addEventListener('click', () => closePopup(imagePopup));
 
 

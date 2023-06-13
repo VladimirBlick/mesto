@@ -1,13 +1,16 @@
 export default class Popup {
   constructor(popupSelector){
-    this._popup = document.querySelector(popupSelector)
-    this._popupCloseButton = this._popup.querySelector('.popup_close-btn')
+    this._popup = document.querySelector(popupSelector);
+    this._popupCloseButton = document.querySelector('.popup_close-btn');
   }
 
   _handleClosePopup = (evt) =>  {
-    if (isOverlay || closeBtn) {
-      this.close()
-      }
+    const isOverlay = evt.target.classList.contains('popup');
+      const closeBtn = evt.target.classList.contains('popup-image__close-btn');
+
+      if (isOverlay || closeBtn) {
+        const popupOpened = document.querySelector('.popup_opened');
+        this.close()}
   }
 
   _closePopupEsc = (evt) =>  {
@@ -21,8 +24,8 @@ export default class Popup {
   }
 
 
-  setEventListener(){
-    popupCloseButton.addEventListener('click', this._handleCloseButton);
+  setEventListener() {
+    this._popupCloseButton.addEventListener('click', this._handleCloseButton);
     this._popup.addEventListener('click', this._handleClosePopup);
   }
 
