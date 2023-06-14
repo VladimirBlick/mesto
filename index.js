@@ -3,7 +3,9 @@ import Card from './scripts/card.js'
 import FormValidator from './scripts/FormValidator.js'
 import popup from './scripts/popup.js'
 import popupWithImage from './scripts/popupWithImage.js'
-
+import section from './scripts/section.js'
+import userInfo from './scripts/userInfo.js'
+import popupWithForm from './scripts/popupWithForm.js'
 
 
 //переменные для профайл попапа
@@ -35,6 +37,13 @@ const sectionElements = document.querySelector('.elements');
 const popupSelectorProfile = '.popup-profile'
 const popupSelectorImage = '.popup-image'
 
+const sectionElementsSelector = '.elements'
+
+const configProfile = {
+  _profileNameSelector: '.profile__name',
+  _profileJobSelector: '.profile__job',
+}
+
 // конфиг валидации
 const validatorConfig = {
   inputSelector: '.popup__input',
@@ -45,7 +54,11 @@ const validatorConfig = {
   textErrorClass: 'popup__error_visible'
 };
 
+const userinfo = new userInfo(configProfile);
+console.log(userinfo);
+
 const popupImage = new popupWithImage(popupSelectorImage);
+popupImage.setEventListener()
 
 //экземпляр класса для профайл попапа
 const profilePopupValidator = new FormValidator(validatorConfig, profilePopupForm)
@@ -55,6 +68,11 @@ profilePopupValidator.enableValidation();
 const cardPopupValidator = new FormValidator(validatorConfig, cardForm)
 cardPopupValidator.enableValidation();
 
+const popupProfile = new popupWithForm(popupSelectorProfile, (evt) =>{
+  evt.preventDefault();
+  userinfo.setuserinfo(popupProfile.getInputValue())
+  popupProfile.close();
+})
 //открытие и закрытие попапов
 // function openPopup(popup) {
 //   popup.classList.add('popup_opened');
@@ -139,19 +157,29 @@ function addCard(container, card) {
 }
 
 // дефолтные карточки из массива
-initialcards.forEach(element => {
-  addCard(sectionElements, createNewCard(element))
-});
+// initialcards.forEach(element => {
+//   addCard(sectionElements, createNewCard(element))
+// });
 
-function createNewCard(cardData) {
-  const element = new Card(cardData, selectorTemplate, popupImage.open);
-  const cardElement = element.createCard();
-  return cardElement;
-}
+// function createNewCard(cardData) {
+//   const element = new Card(cardData, selectorTemplate, popupImage.open);
+//   const cardElement = element.createCard();
+//   return cardElement;
+// }
 
-function addCardToContainer(cardMarkup) {
-  sectionElements.prepend(cardMarkup);
-}
+const sectios = new section({
+  items:initialcards,
+  renderer: (cardData) => {
+    const element = new Card(cardData, selectorTemplate, popupImage.open);
+    return element.createCard();
+  }
+}, sectionElementsSelector)
+
+sectios.addCardFromArray()
+
+// function addCardToContainer(cardMarkup) {
+//   sectionElements.prepend(cardMarkup);
+// }
 
 
 // //слушатели для профайл попапа
