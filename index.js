@@ -55,7 +55,7 @@ const validatorConfig = {
 };
 
 const userinfo = new userInfo(configProfile);
-console.log(userinfo);
+
 
 const popupImage = new popupWithImage(popupSelectorImage);
 popupImage.setEventListener()
@@ -68,11 +68,7 @@ profilePopupValidator.enableValidation();
 const cardPopupValidator = new FormValidator(validatorConfig, cardForm)
 cardPopupValidator.enableValidation();
 
-const popupProfile = new popupWithForm(popupSelectorProfile, (evt) =>{
-  evt.preventDefault();
-  userinfo.setuserinfo(popupProfile.getInputValue())
-  popupProfile.close();
-})
+
 //открытие и закрытие попапов
 // function openPopup(popup) {
 //   popup.classList.add('popup_opened');
@@ -87,10 +83,12 @@ const popupProfile = new popupWithForm(popupSelectorProfile, (evt) =>{
 // }
 
 const openProfileForm = () => {
-  profilePopupValidator.resetValidationState();
-  profilePopupInputName.value = profileName.textContent;
-  profilePopupInputJob.value = profileJob.textContent;
-  openPopup(profilePopup);
+  // profilePopupValidator.resetValidationState();
+  // profilePopupInputName.value = profileName.textContent;
+  // profilePopupInputJob.value = profileJob.textContent;
+  // openPopup(profilePopup);
+  popupProfile.setInputValue(userinfo.getUserInfo())
+  popupProfile.open()
 }
 
 const openCardForm = () => {
@@ -103,7 +101,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profilePopupInputName.value;
   profileJob.textContent = profilePopupInputJob.value;
-  closePopup(profilePopup);
+  popupProfile.close();
 }
 
 // const handleClosePopup = (evt) => {
@@ -176,6 +174,12 @@ const sectios = new section({
 }, sectionElementsSelector)
 
 sectios.addCardFromArray()
+
+const popupProfile = new popupWithForm(popupSelectorProfile, (evt) =>{
+  evt.preventDefault();
+  userinfo.setUserInfo(popupProfile.getInputValue())
+  popupProfile.close();
+})
 
 // function addCardToContainer(cardMarkup) {
 //   sectionElements.prepend(cardMarkup);
