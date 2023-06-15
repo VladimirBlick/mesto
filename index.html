@@ -38,7 +38,7 @@
 
   <div class="popup popup-profile">
     <div class="popup-profile__container">
-      <button type="button" class="popup-profile__close-btn popup_close-btn"></button>
+      <button type="button" class="popup-profile__close-btn" id="popupCloseBtn"></button>
       <h2 class="popup-profile__title">Редактировать профиль</h2>
 
       <form class="popup-profile__form popup__form" name="popupProfileForm" novalidate>
@@ -60,22 +60,22 @@
 
   <div class="popup popup-card">
     <div class="popup-card__container">
-      <button type="button" class="popup-card__close-btn popup_close-btn"></button>
+      <button type="button" class="popup-card__close-btn" id="popupCloseBtn"></button>
       <h2 class="popup-card__title">Новое место</h2>
 
       <form class="popup-card__form popup__form" name="popup-card-Form" novalidate>
         <label class="popup__input-element">
-          <input class="popup__input" id="place" placeholder="Название"
-            required type="text" minlength="2" maxlength="30" name="place">
-          <span class="popup__error popup__error_place"></span>
+          <input class="popup__input" id="title" placeholder="Название"
+            required type="text" minlength="2" maxlength="30" name="title">
+          <span class="popup__error popup__error_title"></span>
         </label>
 
         <label class="popup__input-element">
-          <input class="popup__input" id="url"
-            placeholder="Ссылка на картинку" required type="url" name="url">
-          <span class="popup__error popup__error_url"></span>
+          <input class="popup__input" id="link"
+            placeholder="Ссылка на картинку" required type="url" name="link">
+          <span class="popup__error popup__error_link"></span>
         </label>
-        <button type="submit" class="popup__button popup-card__btn">Создать</button>
+        <button type="submit" class="popup__button">Создать</button>
       </form>
     </div>
   </div>
@@ -84,7 +84,7 @@
     <div class="popup-image__form">
       <img class="popup-image__container" src="#" alt="Фото места">
       <p class="popup-image__signature"></p>
-      <button type="button" class="popup-image__close-btn popup_close-btn"></button>
+      <button type="button" class="popup-image__close-btn" id="popupCloseBtn"></button>
     </div>
   </div>
 
@@ -103,7 +103,7 @@
 
 
   <script type="module" src="./index.js"></script>
-  
+
 
 
 
