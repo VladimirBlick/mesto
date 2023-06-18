@@ -3,8 +3,8 @@ import popup from './popup.js'
 export default class popupWithImage extends popup {
   constructor (popupSelector){
     super(popupSelector);
-    this._popupImage = document.querySelector('.popup-image__container');
-    this._imagePopupSignature = document.querySelector('.popup-image__signature');
+    this._popupImage =this._popup.querySelector('.popup-image__container');
+    this._imagePopupSignature = this._popup.querySelector('.popup-image__signature');
   }
 
   open = (cardData) => {

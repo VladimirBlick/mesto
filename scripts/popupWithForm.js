@@ -10,8 +10,8 @@ this._inputList = this._form.querySelectorAll('.popup__input');
 
 getInputValue () {
   this._values = {};
-  this._inputList.array.forEach(input => {
-    this._values[input.name] = input._value;
+  this._inputList.forEach(input => {
+    this._values[input.name] = input.value;
   })
   return this._values;
 }

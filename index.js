@@ -1,9 +1,8 @@
 import initialcards from './scripts/initialcards.js'
 import Card from './scripts/card.js'
 import FormValidator from './scripts/FormValidator.js'
-import popup from './scripts/popup.js'
 import popupWithImage from './scripts/popupWithImage.js'
-import section from './scripts/section.js'
+import Section from './scripts/section.js'
 import userInfo from './scripts/userInfo.js'
 import popupWithForm from './scripts/popupWithForm.js'
 
@@ -44,9 +43,11 @@ const popupSelectorCard = '.popup-card'
 const sectionElementsSelector = '.elements'
 
 const configProfile = {
-  _profileNameSelector: '.profile__name',
-  _profileJobSelector: '.profile__job',
+  profileNameSelector: '.profile__name',
+  profileJobSelector: '.profile__job',
 }
+const userinfo = new userInfo(configProfile);
+
 
 // конфиг валидации
 const validatorConfig = {
@@ -58,7 +59,7 @@ const validatorConfig = {
   textErrorClass: 'popup__error_visible'
 };
 
-const userinfo = new userInfo(configProfile);
+
 
 
 const popupImage = new popupWithImage(popupSelectorImage);
@@ -150,9 +151,9 @@ const selectorTemplate = '#card-template'
 
 
 // добавление карточки в тот контейнер, который нам нужен
-function addCard(container, card) {
-  container.append(card);
-}
+// function addCard(container, card) {
+//   container.append(card);
+// }
 
 // дефолтные карточки из массива
 // initialcards.forEach(element => {
@@ -165,15 +166,15 @@ function addCard(container, card) {
 //   return cardElement;
 // }
 
-const sectios = new section({
+const section = new Section({
   items:initialcards,
-  renderer: (cardData) => {
-    const element = new Card(cardData, selectorTemplate, popupImage.open);
-    return element.createCard();
+  renderer: (element) => {
+    const card = new Card(element, selectorTemplate, popupImage.open);
+    return card.createCard();
   }
 }, sectionElementsSelector)
 
-sectios.addCardFromArray()
+section.addCardFromArray()
 
 const popupProfile = new popupWithForm(popupSelectorProfile, (evt) =>{
   evt.preventDefault();
@@ -185,7 +186,7 @@ popupProfile.setEventListener()
 
  const popupAddCard = new popupWithForm(popupSelectorCard, (evt) =>{
   evt.preventDefault();
-  sectios.addItem(sectios.renderer(popupAddCard.getInputValue()))
+  section.addItem(section.renderer(popupAddCard.getInputValue()))
   popupAddCard.close();
  })
  popupAddCard.setEventListener();
@@ -204,7 +205,7 @@ popupProfile.setEventListener()
 // //слушатели для профайл попапа
 profilePopupOpenBtn.addEventListener('click', () => openProfileForm(profilePopup));
 // profilePopupCloseBtn.addEventListener('click', () => closePopup(profilePopup));
-profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
+// profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
 
 // //слушатели для карточки попапа
 cardOpenBtn.addEventListener('click', () => openCardForm(popupCard));
