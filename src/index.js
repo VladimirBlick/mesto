@@ -5,6 +5,7 @@ import popupWithImage from './scripts/popupWithImage.js'
 import Section from './scripts/section.js'
 import userInfo from './scripts/userInfo.js'
 import popupWithForm from './scripts/popupWithForm.js'
+import './pages/index.css'
 
 //переменные для профайл попапа
 const profilePopup = document.querySelector('.popup-profile');
