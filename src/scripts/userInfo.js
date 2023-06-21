@@ -1,4 +1,4 @@
-export default class userInfo{
+export default class UserInfo{
   constructor(configProfile){
 
 this._profileName = document.querySelector(configProfile.profileNameSelector);
