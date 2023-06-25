@@ -8,7 +8,7 @@ this._form = this._popup.querySelector('.popup__form');
 this._inputList = this._form.querySelectorAll('.popup__input');
   }
 
-getInputValue () {
+  _getInputValue () {
   this._values = {};
   this._inputList.forEach(input => {
     this._values[input.name] = input.value;
@@ -24,7 +24,11 @@ this._inputList.forEach(input => {
 
 setEventListener(){
   super.setEventListener();
-  this._form.addEventListener('submit', this._submit)
+  this._form.addEventListener('submit', (evt)=>{
+    evt.preventDefault();
+    this._submit(this._getInputValue())
+    this.close();
+  })
 }
 
   close(){

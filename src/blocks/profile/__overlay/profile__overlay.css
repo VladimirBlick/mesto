@@ -1,0 +1,18 @@
+.profile__overlay{
+
+  width: 120px;
+  height: 120px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: url("../../../images/Vector.svg") no-repeat;
+  transition: opacity ease-in-out 0.2s;
+  background-color: black;
+  color: black;
+  border: none;
+}
+
+.profile__overlay:hover {
+  opacity: 0.2;
+  cursor: pointer;
+}
