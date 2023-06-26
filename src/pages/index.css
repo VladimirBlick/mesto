@@ -13,6 +13,7 @@
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__popup-profile/profile__popup-profile.css);
 @import url(../blocks/profile/__overlay/profile__overlay.css);
+@import url(../blocks/profile/__overlay/_pencil/profile__overlay_pencil.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
@@ -43,9 +44,7 @@
 @import url(../blocks/popup-image/__signature/popup-image__signature.css);
 @import url(../blocks/popup-image/__close_btn/popup-image__close-btn.css);
 @import url(../blocks/popup-image/__form/popup-image__form.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__button/popup__button.css);
-@import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__input/popup__input.css);
@@ -54,11 +53,13 @@
 @import url(../blocks/popup-update/__container/popup-update__container.css);
 @import url(../blocks/popup-update/__form/popup-update__form.css);
 @import url(../blocks/popup-update/__title/popup-update__title.css);
-@import url(../blocks/popup-update/__btn/popup-update__btn.css);
 @import url(../blocks/popup-update/__close-btn/popup-update__close-btn.css);
+@import url(../blocks/popup-delete/__form/popup-delete__form.css);
 @import url(../blocks/popup-delete/__btn/popup-delete__btn.css);
 @import url(../blocks/popup-delete/__container/popup-delete__container.css);
 @import url(../blocks/popup-delete/__title/popup-delete__title.css);
 @import url(../blocks/popup-delete/__close-btn/popup-delete__close-btn.css);
-@import url(../blocks/popup-delete/__form/popup-delete__form.css);
 @import url(../blocks/popup-delete/popup-delete.css);
+@import url(../blocks/popup-update/__btn/popup-update__btn.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);

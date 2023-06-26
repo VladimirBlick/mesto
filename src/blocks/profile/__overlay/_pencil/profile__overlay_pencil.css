@@ -1,0 +1,19 @@
+.profile__overlay_pencil{
+  width: 120px;
+  height: 120px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: url("../../../images/Vector.svg") no-repeat;
+  background-position: center;
+  transition: opacity ease-in-out 0.2s;
+background-color: blue;
+  border: none;
+  position: absolute;
+  opacity: 1;
+}
+
+.profile__overlay:hover {
+  opacity: 0;
+  cursor: pointer;
+}

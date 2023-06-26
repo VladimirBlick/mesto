@@ -4,6 +4,7 @@ import PopupWithImage from './scripts/popupWithImage.js'
 import Section from './scripts/section.js'
 import UserInfo from './scripts/userInfo.js'
 import PopupWithForm from './scripts/popupWithForm.js'
+
 // import './pages/index.css'
 
 import {
@@ -23,10 +24,14 @@ import {
   initialcards
 } from './utils/constants.js'
 
+import PopupDeleteCard from './scripts/popupDeleteCard.js'
+
 const popupAvatarSelector = '.popup-update'
 const avatarOpenBtn = document.querySelector('.profile__overlay');
 const popupAvatar = document.querySelector('.popup-update');
 const avatarForm = document.querySelector('.popup-update__form');
+const popupDeleteSelector = '.popup-delete'
+const popupDeleteForm = document.querySelector('.popup-delete__form');
 
 const userinfo = new UserInfo(configProfile);
 const popupImage = new PopupWithImage(popupSelectorImage);
@@ -43,8 +48,14 @@ cardPopupValidator.enableValidation();
 const avatarPopupValidator = new FormValidator(validatorConfig, avatarForm)
 avatarPopupValidator.enableValidation();
 
+const deleteCardPopup = new PopupDeleteCard (popupDeleteSelector, (element) =>{
+  element.removeCard();
+  deleteCardPopup.close();
+  console.log('123');
+})
+
 function creatNewCard (element){
-  const card = new Card(element, selectorTemplate, popupImage.open);
+  const card = new Card(element, selectorTemplate, popupImage.open, deleteCardPopup.open);
   return card.createCard();
 }
 
@@ -63,7 +74,6 @@ const popupProfile = new PopupWithForm(popupSelectorProfile, (data) => {
 
 const popupAddCard = new PopupWithForm(popupSelectorCard, (data) => {
   section.addItem(creatNewCard(data))
-
 })
 
 const popupEditAvatar = new PopupWithForm(popupAvatarSelector, (data) =>{
@@ -90,6 +100,7 @@ popupProfile.setEventListener();
 popupAddCard.setEventListener();
 popupImage.setEventListener();
 popupEditAvatar.setEventListener();
+deleteCardPopup.setEventListener();
 
 //слушатели для профайл попапа
 profilePopupOpenBtn.addEventListener('click', () => openProfileForm(profilePopup));
@@ -100,7 +111,3 @@ cardOpenBtn.addEventListener('click', () => openCardForm(popupCard));
 //слушатели для аватар попапа
 avatarOpenBtn.addEventListener('click', () => openAvatarForm(popupAvatar));
 
-// document.querySelector('.profile__overlay').addEventListener('click',() =>{
-//   popupEditAvatar.open()
-
-// })

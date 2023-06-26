@@ -10,6 +10,7 @@
   text-align: center;
   border-radius: 2px;
   transition: opacity ease-in-out 0.2s;
+  height: 46px;
 }
 
 .popup-delete__btn:hover {
@@ -20,7 +21,7 @@
 @media screen and (min-width:1000px) {
   .popup-delete__btn {
     height: 50px;
-    margin-top: 20px;
+    margin-top: 38px;
     font-size: 18px;
     line-height: 22px;
   }
