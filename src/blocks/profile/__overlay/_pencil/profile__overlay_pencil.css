@@ -1,6 +1,6 @@
 .profile__overlay_pencil{
-  width: 120px;
-  height: 120px;
+  width: 25px;
+  height: 25px;
   margin: 0;
   padding: 0;
   border-radius: 50%;
@@ -15,5 +15,5 @@ background-color: blue;
 
 .profile__overlay:hover {
   opacity: 0;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
