@@ -30,6 +30,14 @@ const validatorConfig = {
   textErrorClass: 'popup__error_visible'
 };
 
+// попапы аватара и удаления карточки
+const popupAvatarSelector = '.popup-update'
+const avatarOpenBtn = document.querySelector('.profile__overlay');
+const popupAvatar = document.querySelector('.popup-update');
+const avatarForm = document.querySelector('.popup-update__form');
+const popupDeleteSelector = '.popup-delete'
+
+
 const initialcards = [
   {
     title: 'Омск',
@@ -71,5 +79,11 @@ export{
   sectionElementsSelector,
   configProfile,
   validatorConfig,
-  initialcards
+  initialcards,
+  popupAvatarSelector,
+  avatarOpenBtn,
+  popupAvatar,
+  avatarForm,
+  popupDeleteSelector
 }
+

@@ -6,6 +6,7 @@
   margin: 42px auto 0;
   position: relative;
   flex-direction: column;
+  align-items:center;
 }
 
 @media screen and (min-width:1000px) {

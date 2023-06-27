@@ -4,7 +4,7 @@ import PopupWithImage from './scripts/popupWithImage.js'
 import Section from './scripts/section.js'
 import UserInfo from './scripts/userInfo.js'
 import PopupWithForm from './scripts/popupWithForm.js'
-
+import PopupDeleteCard from './scripts/popupDeleteCard.js'
 // import './pages/index.css'
 
 import {
@@ -21,17 +21,13 @@ import {
   sectionElementsSelector,
   configProfile,
   validatorConfig,
-  initialcards
+  initialcards,
+  popupAvatarSelector,
+  avatarOpenBtn,
+  popupAvatar,
+  avatarForm,
+  popupDeleteSelector
 } from './utils/constants.js'
-
-import PopupDeleteCard from './scripts/popupDeleteCard.js'
-
-const popupAvatarSelector = '.popup-update'
-const avatarOpenBtn = document.querySelector('.profile__overlay');
-const popupAvatar = document.querySelector('.popup-update');
-const avatarForm = document.querySelector('.popup-update__form');
-const popupDeleteSelector = '.popup-delete'
-const popupDeleteForm = document.querySelector('.popup-delete__form');
 
 const userinfo = new UserInfo(configProfile);
 const popupImage = new PopupWithImage(popupSelectorImage);
@@ -48,10 +44,10 @@ cardPopupValidator.enableValidation();
 const avatarPopupValidator = new FormValidator(validatorConfig, avatarForm)
 avatarPopupValidator.enableValidation();
 
+//экземпляр класса для попапа удаления карточки
 const deleteCardPopup = new PopupDeleteCard (popupDeleteSelector, (element) =>{
   element.removeCard();
   deleteCardPopup.close();
-  console.log('123');
 })
 
 function creatNewCard (element){
