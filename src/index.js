@@ -5,6 +5,7 @@ import Section from './scripts/section.js'
 import UserInfo from './scripts/userInfo.js'
 import PopupWithForm from './scripts/popupWithForm.js'
 import PopupDeleteCard from './scripts/popupDeleteCard.js'
+import Api from './scripts/api.js'
 // import './pages/index.css'
 
 import {
@@ -28,6 +29,20 @@ import {
   avatarForm,
   popupDeleteSelector
 } from './utils/constants.js'
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-69',
+  headers: {
+    authorization: 'e03d7410-18b9-44d3-a520-a37d81ed7110',
+    'Content-Type': 'application/json'
+}})
+
+api.getCards()
+.then(res => console.log(res))
+
+api.getInfo()
+.then(res => console.log(res) )
+
 
 const userinfo = new UserInfo(configProfile);
 const popupImage = new PopupWithImage(popupSelectorImage);
@@ -62,7 +77,7 @@ const section = new Section({
   }
 }, sectionElementsSelector)
 
-section.addCardFromArray()
+// section.addCardFromArray()
 
 const popupProfile = new PopupWithForm(popupSelectorProfile, (data) => {
   userinfo.setUserInfo(data)
@@ -107,3 +122,10 @@ cardOpenBtn.addEventListener('click', () => openCardForm(popupCard));
 //слушатели для аватар попапа
 avatarOpenBtn.addEventListener('click', () => openAvatarForm(popupAvatar));
 
+Promise.all([api.getInfo(), api.getCards()])
+.then(([dataUser, dataCard]) => {
+
+  dataCard.forEach(element => element.myId = dataUser._id)
+userinfo.setUserInfo({username: dataUser.name, job: dataUser.about, avatar:dataUser.avatar})
+section.addCardFromArray(dataCard)
+})

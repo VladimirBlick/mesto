@@ -18,6 +18,7 @@ const sectionElementsSelector = '.elements'
 const configProfile = {
   profileNameSelector: '.profile__name',
   profileJobSelector: '.profile__job',
+  profileAvatarSelector: '.profile__avatar'
 }
 
 // конфиг валидации
