@@ -1,5 +1,5 @@
 class Card {
-  constructor (cardData, selectorTemplate, openImagePopup, openDeletePopup) {
+  constructor(cardData, selectorTemplate, openImagePopup, openDeletePopup) {
     this._cardData = cardData;
     this._selectorTemplate = selectorTemplate;
     this._openImagePopup = openImagePopup;
@@ -40,8 +40,8 @@ removeCard() {
     this._elementCityDelete = this._cloneElement.querySelector('.element_delete');
     this._elementCityName = this._cloneElement.querySelector('.element__city-name');
     this._elementImage.src = this._cardData.link;
-    this._elementImage.alt = this._cardData.title;
-    this._elementCityName.textContent = this._cardData.title;
+    this._elementImage.alt = this._cardData.name;
+    this._elementCityName.textContent = this._cardData.name;
     this._setEventListeners();
     return this._cloneElement;
   }

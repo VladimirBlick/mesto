@@ -35,13 +35,14 @@ const api = new Api({
   headers: {
     authorization: 'e03d7410-18b9-44d3-a520-a37d81ed7110',
     'Content-Type': 'application/json'
-}})
+  }
+})
 
-api.getCards()
-.then(res => console.log(res))
+// api.getCards()
+// .then(res => console.log(res))
 
-api.getInfo()
-.then(res => console.log(res) )
+// api.getInfo()
+// .then(res => console.log(res))
 
 
 const userinfo = new UserInfo(configProfile);
@@ -71,11 +72,15 @@ function creatNewCard (element){
 }
 
 const section = new Section({
-  items: initialcards,
+  // items: initialcards,
   renderer: (element) => {
     section.addItem(creatNewCard(element))
   }
 }, sectionElementsSelector)
+
+// const section = new Section((element) =>{
+//  section.addItem(creatNewCard(element))
+// }, sectionElementsSelector)
 
 // section.addCardFromArray()
 
