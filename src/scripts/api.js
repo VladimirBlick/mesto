@@ -56,6 +56,23 @@ addCard(data){
   })
   .then (res => res.ok ? res.json() : Promise.reject)
 }
+addLike(cardId){
+  return fetch (`${this._url}/cards/${cardId}/likes`, {
+    method :'PUT',
+    headers:{
+   authorization: this._authorization,}
+    })
+    .then (res => res.ok ? res.json() : Promise.reject)
+  }
+
+  deleteLike(cardId){
+    return fetch (`${this._url}/cards/${cardId}/likes`, {
+      method :'DELETE',
+      headers:{
+     authorization: this._authorization,}
+      })
+      .then (res => res.ok ? res.json() : Promise.reject)
+    }
 }
 
 

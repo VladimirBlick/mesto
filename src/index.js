@@ -38,12 +38,6 @@ const api = new Api({
   }
 })
 
-// api.getCards()
-// .then(res => console.log(res))
-
-// api.getInfo()
-// .then(res => console.log(res))
-
 
 const userinfo = new UserInfo(configProfile);
 const popupImage = new PopupWithImage(popupSelectorImage);
@@ -67,7 +61,21 @@ const deleteCardPopup = new PopupDeleteCard (popupDeleteSelector, (element) =>{
 })
 
 function creatNewCard (element){
-  const card = new Card(element, selectorTemplate, popupImage.open, deleteCardPopup.open);
+  const card = new Card(element, selectorTemplate, popupImage.open, deleteCardPopup.open, (likeElement, cardId) => {
+if (elementCityLike.classList.contains('element__city-like_active')){
+  api.deleteLike(cardId)
+  .then(res =>{
+    card.toggleLike(res.likes)
+  })
+  .catch((error => console.log(`ошибка при снятии лайка ${error}`)))
+} else {
+  api.addLike(cardId)
+  .then(res =>{
+    card.toggleLike(res.likes)
+  })
+  .catch((error => console.log(`ошибка при добавлении лайка ${error}`)))
+}
+  });
   return card.createCard();
 }
 
@@ -148,4 +156,4 @@ dataCard.forEach(element => element.myId = dataUser._id)
 userinfo.setUserInfo({username: dataUser.name, job: dataUser.about, avatar:dataUser.avatar})
 section.addCardFromArray(dataCard)
 })
-.catch((error => console.log(`ошибка создания страницы ${error}`)))
+// .catch((error => console.log(`ошибка создания страницы ${error}`)))

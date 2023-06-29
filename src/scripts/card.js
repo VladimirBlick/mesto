@@ -1,14 +1,17 @@
 export default class Card {
-  constructor(cardData, selectorTemplate, openImagePopup, openDeletePopup) {
+  constructor(cardData, selectorTemplate, openImagePopup, openDeletePopup, workLike) {
     this._cardData = cardData;
     this._name = cardData.name;
     this._myId = cardData.myId;
     this._ownerId = cardData.owner._id;
+    this._cardId = cardData._id;
+    this._workLike = workLike;
     this._selectorTemplate = selectorTemplate;
     this._openImagePopup = openImagePopup;
     this._openDeletePopup = openDeletePopup;
     this._likes = cardData.likes;
     this._likesLength = cardData.likes.length;
+
   }
 
   _cloneTemplate() {
@@ -16,7 +19,8 @@ export default class Card {
   }
 
   _handleLike = () => {
-    this._elementCityLike.classList.toggle('element__city-like_active');
+    this._workLike(this._elementCityLike, this._cardId)
+    // this._elementCityLike.classList.toggle('element__city-like_active');
   };
 
   _handleDelete = () => {
@@ -52,8 +56,13 @@ export default class Card {
         return;
       }
     });
-    this._likesCounter.textContent = this._likesLength; 
+    this._likesCounter.textContent = this._likesLength;
   }
+
+toggleLike(likes){
+  this._elementCityLike.classList.toggle('element__city-like_active');
+  this._likesCounter.textContent = likes.length
+}
 
   createCard() {
     this._cloneElement = this._cloneTemplate();
