@@ -85,15 +85,30 @@ const section = new Section({
 // section.addCardFromArray()
 
 const popupProfile = new PopupWithForm(popupSelectorProfile, (data) => {
-  userinfo.setUserInfo(data)
+  api.setUserInfo(data)
+  .then (res => {userinfo.setUserInfo({username: res.name, job: res.about, avatar: res.avatar})
+  })
+  .catch((error => console.log(`ошибка редактрирования профиля ${error}`)))
+  .finally()
 })
 
 const popupAddCard = new PopupWithForm(popupSelectorCard, (data) => {
-  section.addItem(creatNewCard(data))
+  Promise.all ([api.getInfo(), api.addCard(data)])
+  .then(([dataUser, dataCard]) => {
+  dataCard.myId = dataUser._id
+section.addItem(creatNewCard(dataCard))
+popupAddCard.close()
+})
+.catch((error => console.log(`ошибка создания карточки ${error}`)))
+  .finally()
 })
 
 const popupEditAvatar = new PopupWithForm(popupAvatarSelector, (data) =>{
-document.querySelector('.profile__avatar').src = data.avatar;
+api.setAvatar(data)
+.then (res => {userinfo.setUserInfo({username: res.name, job: res.about, avatar: res.avatar})
+})
+.catch((error => console.log(`ошибка обновления фотки аватара ${error}`)))
+.finally()
 })
 
 const openProfileForm = () => {
@@ -129,8 +144,8 @@ avatarOpenBtn.addEventListener('click', () => openAvatarForm(popupAvatar));
 
 Promise.all([api.getInfo(), api.getCards()])
 .then(([dataUser, dataCard]) => {
-
-  dataCard.forEach(element => element.myId = dataUser._id)
+dataCard.forEach(element => element.myId = dataUser._id)
 userinfo.setUserInfo({username: dataUser.name, job: dataUser.about, avatar:dataUser.avatar})
 section.addCardFromArray(dataCard)
 })
+.catch((error => console.log(`ошибка создания страницы ${error}`)))
