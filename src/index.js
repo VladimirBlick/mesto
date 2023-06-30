@@ -54,17 +54,6 @@ cardPopupValidator.enableValidation();
 const avatarPopupValidator = new FormValidator(validatorConfig, avatarForm)
 avatarPopupValidator.enableValidation();
 
-//экземпляр класса для попапа удаления карточки
-const deleteCardPopup = new PopupDeleteCard (popupDeleteSelector, ({card, cardId}) =>{
-  api.deleteCard(cardId)
-  .then(() => {
-    card.removeCard()
-    deleteCardPopup.close();
-  })
-  .catch((error => console.log(`ошибка при удалении карточки ${error}`)))
-  .finally()
-})
-
 function creatNewCard (element){
   const card = new Card(element, selectorTemplate, popupImage.open, deleteCardPopup.open, (elementCityLike, cardId) => {
 if (elementCityLike.classList.contains('element__city-like_active')){
@@ -85,24 +74,18 @@ if (elementCityLike.classList.contains('element__city-like_active')){
 }
 
 const section = new Section({
-  // items: initialcards,
   renderer: (element) => {
     section.addItem(creatNewCard(element))
   }
 }, sectionElementsSelector)
 
-// const section = new Section((element) =>{
-//  section.addItem(creatNewCard(element))
-// }, sectionElementsSelector)
-
-// section.addCardFromArray()
-
 const popupProfile = new PopupWithForm(popupSelectorProfile, (data) => {
   api.setUserInfo(data)
   .then (res => {userinfo.setUserInfo({username: res.name, job: res.about, avatar: res.avatar})
+  popupProfile.close()
   })
   .catch((error => console.log(`ошибка редактрирования профиля ${error}`)))
-  .finally()
+  .finally(() => popupProfile.setupDefaultText())
 })
 
 const popupAddCard = new PopupWithForm(popupSelectorCard, (data) => {
@@ -113,15 +96,26 @@ section.addItem(creatNewCard(dataCard))
 popupAddCard.close()
 })
 .catch((error => console.log(`ошибка создания карточки ${error}`)))
-  .finally()
+  .finally(() => popupAddCard.setupDefaultText())
 })
 
 const popupEditAvatar = new PopupWithForm(popupAvatarSelector, (data) =>{
 api.setAvatar(data)
 .then (res => {userinfo.setUserInfo({username: res.name, job: res.about, avatar: res.avatar})
+popupEditAvatar.close()
 })
 .catch((error => console.log(`ошибка обновления фотки аватара ${error}`)))
-.finally()
+.finally(() => popupEditAvatar.setupDefaultText())
+})
+
+const deleteCardPopup = new PopupDeleteCard (popupDeleteSelector, ({card, cardId}) =>{
+  api.deleteCard(cardId)
+  .then(() => {
+    card.removeCard()
+    deleteCardPopup.close();
+  })
+  .catch((error => console.log(`ошибка при удалении карточки ${error}`)))
+  .finally(() => popupProfile.setupDefaultText())
 })
 
 const openProfileForm = () => {
@@ -161,4 +155,3 @@ dataCard.forEach(element => element.myId = dataUser._id)
 userinfo.setUserInfo({username: dataUser.name, job: dataUser.about, avatar:dataUser.avatar})
 section.addCardFromArray(dataCard)
 })
-// .catch((error => console.log(`ошибка создания страницы ${error}`)))

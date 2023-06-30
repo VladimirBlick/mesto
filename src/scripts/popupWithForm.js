@@ -6,6 +6,8 @@ super(popupSelector);
 this._submit = submit;
 this._form = this._popup.querySelector('.popup__form');
 this._inputList = this._form.querySelectorAll('.popup__input');
+this._submitButton = this._popup.querySelector('.popup__button');
+this._defaultButtonText = this._submitButton.textContent;
   }
 
   _getInputValue () {
@@ -26,9 +28,13 @@ setEventListener(){
   super.setEventListener();
   this._form.addEventListener('submit', (evt)=>{
     evt.preventDefault();
+    this._submitButton.textContent = `${this._submitButton.textContent}...`
     this._submit(this._getInputValue())
-    this.close();
   })
+}
+
+setupDefaultText() {
+  this._submitButton.textContent = this._defaultButtonText;
 }
 
   close(){
