@@ -75,7 +75,7 @@ if (elementCityLike.classList.contains('element__city-like_active')){
 
 const section = new Section({
   renderer: (element) => {
-    section.addItem(creatNewCard(element))
+    section.addItemAppend(creatNewCard(element))
   }
 }, sectionElementsSelector)
 
@@ -92,7 +92,7 @@ const popupAddCard = new PopupWithForm(popupSelectorCard, (data) => {
   Promise.all ([api.getInfo(), api.addCard(data)])
   .then(([dataUser, dataCard]) => {
   dataCard.myId = dataUser._id
-section.addItem(creatNewCard(dataCard))
+section.addItemPrepend(creatNewCard(dataCard))
 popupAddCard.close()
 })
 .catch((error => console.log(`ошибка создания карточки ${error}`)))

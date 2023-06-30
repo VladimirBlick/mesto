@@ -11,7 +11,11 @@ addCardFromArray(dataCard){
   });
 }
 
-addItem(elementFromDom) {
+addItemPrepend(elementFromDom) {
   this._container.prepend(elementFromDom);
+}
+
+addItemAppend(elementFromDom) {
+  this._container.append(elementFromDom);
 }
 }
