@@ -6,7 +6,7 @@ import UserInfo from './scripts/userInfo.js'
 import PopupWithForm from './scripts/popupWithForm.js'
 import PopupDeleteCard from './scripts/popupDeleteCard.js'
 import Api from './scripts/api.js'
-// import './pages/index.css'
+import './pages/index.css'
 
 import {
   profilePopup,
