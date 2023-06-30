@@ -24,7 +24,7 @@ export default class Card {
   };
 
   _handleDelete = () => {
-    this._openDeletePopup(this);
+    this._openDeletePopup({card: this, cardId: this._cardId});
   };
 
   _handleOpenImage = () => {

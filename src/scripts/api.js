@@ -73,6 +73,15 @@ addLike(cardId){
       })
       .then (res => res.ok ? res.json() : Promise.reject)
     }
+
+    deleteCard(cardId){
+      return fetch (`${this._url}/cards/${cardId}`, {
+        method :'DELETE',
+        headers:{
+       authorization: this._authorization}
+        })
+        .then (res => res.ok ? res.json() : Promise.reject)
+      }
 }
 
 

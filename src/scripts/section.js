@@ -12,6 +12,6 @@ addCardFromArray(dataCard){
 }
 
 addItem(elementFromDom) {
-  this._container.append(elementFromDom);
+  this._container.prepend(elementFromDom);
 }
 }

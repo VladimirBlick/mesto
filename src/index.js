@@ -55,13 +55,18 @@ const avatarPopupValidator = new FormValidator(validatorConfig, avatarForm)
 avatarPopupValidator.enableValidation();
 
 //экземпляр класса для попапа удаления карточки
-const deleteCardPopup = new PopupDeleteCard (popupDeleteSelector, (element) =>{
-  element.removeCard();
-  deleteCardPopup.close();
+const deleteCardPopup = new PopupDeleteCard (popupDeleteSelector, ({card, cardId}) =>{
+  api.deleteCard(cardId)
+  .then(() => {
+    card.removeCard()
+    deleteCardPopup.close();
+  })
+  .catch((error => console.log(`ошибка при удалении карточки ${error}`)))
+  .finally()
 })
 
 function creatNewCard (element){
-  const card = new Card(element, selectorTemplate, popupImage.open, deleteCardPopup.open, (likeElement, cardId) => {
+  const card = new Card(element, selectorTemplate, popupImage.open, deleteCardPopup.open, (elementCityLike, cardId) => {
 if (elementCityLike.classList.contains('element__city-like_active')){
   api.deleteLike(cardId)
   .then(res =>{
