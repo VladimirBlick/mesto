@@ -19,8 +19,7 @@ export default class Card {
   }
 
   _handleLike = () => {
-    this._workLike(this._elementCityLike, this._cardId)
-    // this._elementCityLike.classList.toggle('element__city-like_active');
+    this._workLike(this._elementCityLike, this._cardId);
   };
 
   _handleDelete = () => {
