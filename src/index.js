@@ -1,11 +1,11 @@
-import Card from './scripts/card.js'
+import Card from './scripts/Card.js'
 import FormValidator from './scripts/FormValidator.js'
-import PopupWithImage from './scripts/popupWithImage.js'
-import Section from './scripts/section.js'
-import UserInfo from './scripts/userInfo.js'
-import PopupWithForm from './scripts/popupWithForm.js'
-import PopupDeleteCard from './scripts/popupDeleteCard.js'
-import Api from './scripts/api.js'
+import PopupWithImage from './scripts/PopupWithImage.js'
+import Section from './scripts/Section.js'
+import UserInfo from './scripts/UserInfo.js'
+import PopupWithForm from './scripts/PopupWithForm.js'
+import PopupDeleteCard from './scripts/PopupDeleteCard.js'
+import Api from './scripts/Api.js'
 import './pages/index.css'
 
 import {
@@ -28,7 +28,7 @@ import {
   popupAvatar,
   avatarForm,
   popupDeleteSelector
-} from './utils/constants.js'
+} from './utils/Constants.js'
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-69',
@@ -54,28 +54,30 @@ cardPopupValidator.enableValidation();
 const avatarPopupValidator = new FormValidator(validatorConfig, avatarForm)
 avatarPopupValidator.enableValidation();
 
-function creatNewCard (element){
-  const card = new Card(element, selectorTemplate, popupImage.open, deleteCardPopup.open, (elementCityLike, cardId) => {
-if (elementCityLike.classList.contains('element__city-like_active')){
-  api.deleteLike(cardId)
-  .then(res =>{
-    card.toggleLike(res.likes)
-  })
-  .catch((error => console.log(`ошибка при снятии лайка ${error}`)))
-} else {
-  api.addLike(cardId)
-  .then(res =>{
-    card.toggleLike(res.likes)
-  })
-  .catch((error => console.log(`ошибка при добавлении лайка ${error}`)))
-}
-  });
+function createNewCard(element) {
+  const card = new Card(element,selectorTemplate, popupImage.open, deleteCardPopup.open,
+    (elementCityLike, cardId, isLiked) => {
+      if (isLiked) {
+        api.deleteLike(cardId)
+          .then(res => {
+            card.toggleLike(res.likes);
+          })
+          .catch(error => console.log(`ошибка при снятии лайка ${error}`));
+      } else {
+        api.addLike(cardId)
+          .then(res => {
+            card.toggleLike(res.likes);
+          })
+          .catch(error => console.log(`ошибка при добавлении лайка ${error}`));
+      }
+    }
+  );
   return card.createCard();
 }
 
 const section = new Section({
   renderer: (element) => {
-    section.addItemAppend(creatNewCard(element))
+    section.addItemAppend(createNewCard(element))
   }
 }, sectionElementsSelector)
 
@@ -92,7 +94,7 @@ const popupAddCard = new PopupWithForm(popupSelectorCard, (data) => {
   Promise.all ([api.getInfo(), api.addCard(data)])
   .then(([dataUser, dataCard]) => {
   dataCard.myId = dataUser._id
-section.addItemPrepend(creatNewCard(dataCard))
+section.addItemPrepend(createNewCard(dataCard))
 popupAddCard.close()
 })
 .catch((error => console.log(`ошибка создания карточки ${error}`)))

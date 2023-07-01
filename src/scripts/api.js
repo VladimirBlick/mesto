@@ -5,6 +5,12 @@ export default class Api {
     this._authorization = options.headers.authorization;
   }
 
+  _getResponseData(res) {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
+    return res.json();
+}
 
   getInfo(){
     return fetch(`${this._url}/users/me`, {
@@ -12,7 +18,7 @@ export default class Api {
         authorization: this._authorization
       }
     })
-    .then (res => res.ok ? res.json() : Promise.reject)
+    .then (res => this._getResponseData(res))
   }
 
 getCards(){
@@ -20,7 +26,7 @@ getCards(){
 headers:{
   authorization: this._authorization
 }})
-.then(res => res.ok ? res.json() : Promise.reject)
+.then(res => this._getResponseData(res))
 }
 
 setUserInfo(data){
@@ -32,7 +38,7 @@ setUserInfo(data){
       about: data.job,
     })
   })
-  .then (res => res.ok ? res.json() : Promise.reject)
+  .then (res => this._getResponseData(res))
 }
 setAvatar(data){
   return fetch (`${this._url}/users/me/avatar`, {
@@ -42,7 +48,7 @@ setAvatar(data){
       avatar: data.avatar,
     })
   })
-  .then (res => res.ok ? res.json() : Promise.reject)
+  .then (res => this._getResponseData(res))
 }
 
 addCard(data){
@@ -54,7 +60,7 @@ addCard(data){
       link: data.link,
     })
   })
-  .then (res => res.ok ? res.json() : Promise.reject)
+  .then (res => this._getResponseData(res))
 }
 addLike(cardId){
   return fetch (`${this._url}/cards/${cardId}/likes`, {
@@ -62,7 +68,7 @@ addLike(cardId){
     headers:{
    authorization: this._authorization,}
     })
-    .then (res => res.ok ? res.json() : Promise.reject)
+    .then (res => this._getResponseData(res))
   }
 
   deleteLike(cardId){
@@ -71,7 +77,7 @@ addLike(cardId){
       headers:{
      authorization: this._authorization,}
       })
-      .then (res => res.ok ? res.json() : Promise.reject)
+      .then (res => this._getResponseData(res))
     }
 
     deleteCard(cardId){
@@ -80,7 +86,7 @@ addLike(cardId){
         headers:{
        authorization: this._authorization}
         })
-        .then (res => res.ok ? res.json() : Promise.reject)
+        .then (res => this._getResponseData(res))
       }
 }
 

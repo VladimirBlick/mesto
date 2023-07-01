@@ -42,9 +42,10 @@ export default class Card {
 
   _visibleTrashButtonIcon() {
     if (this._myId === this._ownerId) {
-      this._elementCityDelete.style.display = 'block';
     } else {
-      this._elementCityDelete.style.display = 'none';
+      if (this._elementCityDelete.parentNode) {
+        this._elementCityDelete.parentNode.removeChild(this._elementCityDelete);
+      }
     }
   }
 
@@ -52,7 +53,6 @@ export default class Card {
     this._likes.forEach(element => {
       if (element._id === this._myId) {
         this._elementCityLike.classList.add('element__city-like_active');
-        return;
       }
     });
     this._likesCounter.textContent = this._likesLength;

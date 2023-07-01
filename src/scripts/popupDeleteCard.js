@@ -1,10 +1,10 @@
-import popup from './popup.js'
+import popup from './Popup.js'
 
 export default class PopupDeleteCard extends popup{
   constructor(popupSelector, submit ){
     super(popupSelector);
     this._submit = submit;
-
+    this._form = this._popup.querySelector('.popup__form');
   }
 
   setEventListener(){
