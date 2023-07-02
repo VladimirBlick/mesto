@@ -43,8 +43,8 @@ export default class Card {
   _visibleTrashButtonIcon() {
     if (this._myId === this._ownerId) {
     } else {
-      if (this._elementCityDelete.parentNode) {
-        this._elementCityDelete.parentNode.removeChild(this._elementCityDelete);
+      if (this._elementCityDelete) {
+        this._elementCityDelete.remove();
       }
     }
   }
