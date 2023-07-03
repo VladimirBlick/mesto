@@ -16,3 +16,5 @@ this._profileAvatar = document.querySelector(configProfile.profileAvatarSelector
     this._profileAvatar.src = avatar;
   }
 }
+
+//

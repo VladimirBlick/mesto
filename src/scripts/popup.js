@@ -42,3 +42,5 @@ export default class Popup {
     this._document.removeEventListener('keydown', this._closePopupEsc);
   }
 }
+
+//
