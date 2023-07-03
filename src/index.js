@@ -1,3 +1,4 @@
+//Не знаю даже почему у меня не сохраняются с большой буквы имена файлов, третий раз поправил, надеюсь, что сейчас будет нормально
 import Card from './scripts/Card.js'
 import FormValidator from './scripts/FormValidator.js'
 import PopupWithImage from './scripts/PopupWithImage.js'
